@@ -94,7 +94,7 @@ export default defineComponent({
     const hover = ref(false);
 
     const updateHover = function (value: boolean) {
-      if (!selected.value) {
+      if (!window.isTouchEnabled && !selected.value) {
         hover.value = value;
       }
     };
@@ -121,6 +121,12 @@ export default defineComponent({
     const select = function () {
       if (!selected.value) {
         selected.value = true;
+
+        anime.remove(tile.value);
+        anime.set(tile.value, {
+          opacity: 1,
+          scale: window.isTouchEnabled ? 1 : 1.1
+        });
 
         anime({
           targets: tile.value,
