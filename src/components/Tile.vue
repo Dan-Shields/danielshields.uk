@@ -4,7 +4,6 @@
     class="tile"
 
     :style="widthStyle"
-    style="transform: scale(0)"
 
     :class="{ selected }"
     
@@ -13,7 +12,8 @@
 
     @click="select"
   >
-    <div 
+    <div
+      ref="box"
       class="box"
       :style="backgroundStyle"
     >
@@ -89,10 +89,9 @@ export default defineComponent({
 
   setup(props) {
     let backgroundStyle = ref({
-      background: [
-        'linear-gradient(to bottom right, ' + props.color + ', ' + lightenDarkenColor(props.color, 50) + ')'
-      ],
+      background: 'linear-gradient(to bottom right, ' + props.color + ', ' + lightenDarkenColor(props.color, 50) + ')'
     });
+    
     let widthStyle = ref({
       width: props.width      
     });
@@ -107,30 +106,26 @@ export default defineComponent({
       }
     };
 
-    watch(hover, newVal => {
-      console.log(newVal);
-      if (newVal) {
-        anime({
-          targets: tile.value,
-          scale: 1.1,
-          duration: 500,
-          easing: 'easeOutElastic(1, 0.7)'
-        });
-      } else {
-        anime({
-          targets: tile.value,
-          scale: 1,
-          duration: 500,
-          easing: 'easeOutElastic(1, 0.7)'
-        });
+    watch(hover, newHover => {
+      anime({
+        targets: tile.value,
+        scale: newHover ? 1.1 : 1,
+        duration: 500,
+        easing: 'easeOutElastic(1, 0.7)'
+      });
+    });
+
+    const box = ref<HTMLElement | null>(null);
+
+    const select = function () {
+      console.log(props);
+
       if (props.link) {
         window.open(props.url);
 
         return;
       }
-    });
 
-    const select = function () {
       if (!selected.value) {
         selected.value = true;
 
@@ -141,8 +136,8 @@ export default defineComponent({
         });
 
         anime({
-          targets: tile.value,
-          scale: 40,
+          targets: box.value,
+          scale: 10,
           duration: 600,
           easing: 'easeInExpo'
         });
@@ -151,7 +146,7 @@ export default defineComponent({
 
     return {
       tile,
-      lightenDarkenColor,
+      box,
       backgroundStyle,
       widthStyle,
       hover,
@@ -164,7 +159,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-$height: 250px;
+$height: 200px;
 $margin: min(30px, 3vw);
 
 .tile {
@@ -189,6 +184,8 @@ $margin: min(30px, 3vw);
   }
 
   .box {
+    position: absolute;
+
     height: 100%;
     width: calc(100% - #{$margin});
     border-radius: 10px;
