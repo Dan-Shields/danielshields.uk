@@ -76,6 +76,14 @@ export default defineComponent({
     index: {
       type: Number,
       default: -1
+    },
+    link: {
+      type: Boolean,
+      default: false
+    },
+    url: {
+      type: String,
+      default: ''
     }
   },
 
@@ -115,6 +123,10 @@ export default defineComponent({
           duration: 500,
           easing: 'easeOutElastic(1, 0.7)'
         });
+      if (props.link) {
+        window.open(props.url);
+
+        return;
       }
     });
 
