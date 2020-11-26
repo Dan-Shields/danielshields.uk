@@ -4,6 +4,7 @@
   >
     <Header
       :pages="pages.map(page => page.name)"
+      :current-page="currentPage"
       @go-to-page="goToPage"
     />
 

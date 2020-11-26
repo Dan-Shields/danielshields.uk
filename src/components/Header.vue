@@ -3,16 +3,20 @@
     class="header"
   >
     <h1 
-      ref="title"
+      ref="titleDiv"
       class="title"
     >
       {{ title }}
     </h1>
 
-    <div class="navbar">
+    <div 
+      ref="navbar"
+      class="navbar"
+    >
       <h1
         v-for="(page, index) in pages"
         :key="page"
+        :class="{active: index === currentPage}"
         @click="$emit('go-to-page', index)"
       >
         {{ page }}
@@ -41,33 +45,22 @@ export default defineComponent({
         'Projects',
         'Contact'
       ]
+    },
+    currentPage: {
+      type: Number,
+      default: 1
     }
   },
 
   emits: ['go-to-page'],
 
   setup() {
-    const title = ref(null);
-    const subtitle = ref(null);
+    const titleDiv = ref(null);
+    const navbar = ref(null);
 
     onMounted(() => {
       anime({
-        targets: title.value,
-        opacity: {
-          value: 1,
-          duration: 1000,
-          easing: 'easeOutQuart'
-        },
-        scale: {
-          value: 1,
-          duration: 1500,
-          easing: 'easeOutElastic(1, 1)'
-        },
-        delay: 250,
-      });
-
-      anime({
-        targets: subtitle.value,
+        targets: [titleDiv.value, navbar.value],
         opacity: {
           value: [0, 1],
           duration: 1000,
@@ -78,9 +71,14 @@ export default defineComponent({
           duration: 1500,
           easing: 'easeOutElastic(1, 1)'
         },
-        delay: 1250,
+        delay: anime.stagger(1250, { start: 250 }),
       });
     });
+
+    return {
+      titleDiv,
+      navbar
+    };
   }
 });
 </script>
@@ -117,14 +115,17 @@ $height: 100px;
     display: flex;
     justify-content: space-around;
 
-    * > {
-      flex-basis: 33%;
+    > * {
+      //flex-basis: 33%;
     }
 
     h1 {
       user-select: none;
       cursor: pointer;
-      text-decoration: underline;
+
+      &.active {
+        text-decoration: underline;
+      }
     }
   }
 }
