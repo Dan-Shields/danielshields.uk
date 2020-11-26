@@ -1,6 +1,11 @@
 {
   "name": "danielshields.uk",
   "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dan-Shields/danielshields.uk.git"
+  },
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "vite build"
