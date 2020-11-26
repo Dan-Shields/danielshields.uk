@@ -6,9 +6,6 @@
     :style="widthStyle"
 
     :class="{ selected }"
-    
-    @mouseover="updateHover(true)"
-    @mouseout="updateHover(false)"
 
     @click="select"
   >
@@ -16,8 +13,20 @@
       ref="box"
       class="box"
       :style="backgroundStyle"
+
+      @mouseover="updateHover(true)"
+      @mouseout="updateHover(false)"
     >
-      <h1 class="title">
+      <img
+        v-if="imageUrl"
+        class="image"
+        :src="imageUrl"
+      >
+
+      <h1
+        v-else
+        class="title"
+      >
         {{ title }}
       </h1>
     </div>
@@ -25,7 +34,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue';
+import { defineComponent, ref, watch, getCurrentInstance } from 'vue';
 
 import anime from 'animejs';
 
@@ -71,23 +80,33 @@ export default defineComponent({
     },
     title: {
       type: String,
-      default: '<tile_title>'
+      default: ''
     },
     index: {
       type: Number,
       default: -1
     },
-    link: {
-      type: Boolean,
-      default: false
+    pageIndex: {
+      type: Number,
+      default: -1
     },
-    url: {
+    link: {
+      type: String,
+      default: ''
+    },
+    pageName: {
+      type: String,
+      default: ''
+    },
+    imageUrl: {
       type: String,
       default: ''
     }
   },
 
-  setup(props) {
+  emits: ['selected'],
+
+  setup(props, {emit}) {
     let backgroundStyle = ref({
       background: 'linear-gradient(to bottom right, ' + props.color + ', ' + lightenDarkenColor(props.color, 50) + ')'
     });
@@ -107,8 +126,11 @@ export default defineComponent({
     };
 
     watch(hover, newHover => {
+      if (selected.value)
+        return;
+      
       anime({
-        targets: tile.value,
+        targets: box.value,
         scale: newHover ? 1.1 : 1,
         duration: 500,
         easing: 'easeOutElastic(1, 0.7)'
@@ -118,48 +140,78 @@ export default defineComponent({
     const box = ref<HTMLElement | null>(null);
 
     const select = function () {
-      console.log(props);
-
       if (props.link) {
-        window.open(props.url);
+        window.open(props.link);
 
         return;
       }
 
-      if (!selected.value) {
-        selected.value = true;
+      if (selected.value)
+        return;
 
-        anime.remove(tile.value);
-        anime.set(tile.value, {
-          opacity: 1,
-          scale: window.isTouchEnabled ? 1 : 1.1
-        });
+      selected.value = true;
 
-        anime({
-          targets: box.value,
-          scale: 10,
-          duration: 600,
-          easing: 'easeInExpo'
-        });
-      }
+      anime.remove(box.value);
+      anime.set(box.value, {
+        opacity: 1,
+        scale: window.isTouchEnabled ? 1 : 1.1
+      });
+
+      anime({
+        targets: box.value,
+        scale: 10,
+        duration: 600,
+        easing: 'easeInExpo',
+        complete: () => {
+          emit('selected', props.pageIndex, props.index)
+        }
+      });
     };
+
+    const back = function () {
+      if (!selected.value)
+        return;
+
+      anime.remove(box.value);
+
+      anime({
+        targets: box.value,
+        scale: 1,
+        duration: 600,
+        easing: 'easeInOutExpo',
+        complete: () => {
+          hover.value = false;
+          selected.value = false;
+        }
+      });
+    };
+
+    const instance = getCurrentInstance();
+    if (instance) {
+      instance.appContext.config.globalProperties.emitter.on('hide-tile', (data: { page: number, tile: number }) => {
+        console.log('msg received');
+        if (data.page == props.pageIndex && data.tile == props.index) {
+          back();
+        }
+      });
+    }
 
     return {
       tile,
       box,
       backgroundStyle,
       widthStyle,
-      hover,
       selected,
       updateHover,
-      select
+      select,
+      back
     };
   }
 });
 </script>
 
 <style lang="scss" scoped>
-$height: 200px;
+$height: 250px;
 $margin: min(30px, 3vw);
 
 .tile {
@@ -180,6 +232,11 @@ $margin: min(30px, 3vw);
         cursor: default !important;
         opacity: 0;
       }
+
+      .image {
+        cursor: default !important;
+        opacity: 0;
+      }
     }
   }
 
@@ -191,11 +248,19 @@ $margin: min(30px, 3vw);
     border-radius: 10px;
 
     margin: 0 calc(#{$margin} / 2);
+    
+
 
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+
+    > * {
+      transition: opacity 0.1s ease-in-out;
+      opacity: 1;
+    }
 
     .title {
       color: white;
@@ -203,9 +268,20 @@ $margin: min(30px, 3vw);
       margin: 0;
       user-select: none;
       cursor: pointer;
+      padding: 5px;
+    }
 
-      transition: opacity 0.1s ease-in-out;
+    .image {
+      max-width: 80%;
+      max-height: 80%;
+      margin: auto;
+
+      user-select: none;
     }
   }
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
 }
 </style>

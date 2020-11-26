@@ -8,10 +8,12 @@
       @go-to-page="goToPage"
     />
 
-    <template v-for="(page, index) in pages">
+    <template 
+      v-for="(page, index) in pages"
+      :key="index"
+    >
       <div 
         :id="page.name.toLowerCase()"
-        :key="page.id"
 
         :ref="el => { if (el) pageDivs[index] = el }"
         
@@ -23,14 +25,33 @@
       >
         <Tile
           v-for="(tile, tileIndex) in page.tiles"
-          :key="tile.id"
+          :key="tileIndex"
           :width="tile.width"
           :color="tile.colour"
           :title="tile.title"
           :index="tileIndex"
+          :page-index="index"
           :link="tile.link"
-          :url="tile.url"
+          :page-name="page.name"
+          :image-url="tile.image || ''"
+          @selected="showContent"
         />
+
+        <transition name="fade">
+          <div
+            v-if="page.selectedTile != -1"
+            class="tile-content"
+          >
+            <div
+              class="back"
+              :class="{ invert: page.tiles[page.selectedTile].invertColours }"
+              @click="hideContent"
+            >
+              <img :src="arrows[page.tiles[page.selectedTile].invertColours ? 'inverted' : 'normal']">
+              BACK
+            </div>
+          </div>
+        </transition>
       </div>
     </template>
   </div>
@@ -39,78 +60,97 @@
 <script lang="ts">
 import anime from 'animejs';
 
-import Tile from './components/Tile.vue';
+import TileComponent from './components/Tile.vue';
 import Header from './components/Header.vue';
 
-import { defineComponent, ref, reactive, onMounted, onBeforeUpdate } from 'vue';
+import tileImages from './assets/tile-images';
+import normalArrow from './assets/arrow.svg';
+import invertedArrow from './assets/arrow-inverted.svg';
+
+import { defineComponent, ref, reactive, onMounted, onBeforeUpdate, getCurrentInstance } from 'vue';
+
+interface Tile {
+  title: string,
+  image?: string,
+  colour: string,
+  width: string,
+  link?: string,
+  invertColours?: boolean
+}
+
+interface Page {
+  name: string,
+  tiles: Tile[],
+  selectedTile: number
+}
+
 export default defineComponent({
   name: 'App',
   components: {
-    Tile,
+    Tile: TileComponent,
     Header
   },
 
   setup() {
-
-    const mod = function(a: number, b: number) {
-      return ((a%b)+b)%b;
-    };
-
-    const pages = reactive([
+    
+    // Information for each page
+    const pages = reactive<Page[]>([
       {
-        name: 'Projects',
+        name: 'Experience',
         tiles: [
-          {id: '1', title: 'Web Development', colour: '#4643ff', width: '60%'},
-          {id: '2', title: 'Broadcast Graphics', colour: '#8e44ad', width: '40%'},
-          {id: '3', title: 'GitHub', colour: '#24292e', width: '40%'},
-          {id: '4', title: '_title_here_', colour: '#52A316', width: '60%'},
-          {id: '5', title: '_title_here_', colour: '#F3B218', width: '60%'},
-          {id: '6', title: '_title_here_', colour: '#D46326', width: '40%'}
-        ]
+          { title: '', image: tileImages.faceit, colour: '#FF5500', width: '60%' },
+          { title: 'NodeCG Packages', image: tileImages.nodecg, colour: '#03615f', width: '40%' },
+          { title: 'Essentials.TF', image: tileImages.essentialstf, colour: '#E5E5E5', width: '40%', invertColours: true },
+          { title: '', image: tileImages.uomesports, colour: '#2E1745', width: '60%' },
+          { title: '', image: tileImages.hiveaid, colour: '#3A3A3C', width: '50%' },
+          { title: '', image: tileImages.kotn, colour: '#120216', width: '50%' }
+        ],
+        selectedTile: -1
       },
       {
         name: 'Services',
         tiles: [
-          {id: '1', title: 'Web Development', colour: '#4643ff', width: '60%'},
-          {id: '2', title: 'Broadcast Graphics', colour: '#8e44ad', width: '40%'},
-          {id: '3', title: 'GitHub', colour: '#119aa4', width: '40%'},
-          {id: '4', title: '_title_here_', colour: '#52A316', width: '60%'},
-          {id: '5', title: '_title_here_', colour: '#F3B218', width: '60%'},
-          {id: '6', title: '_title_here_', colour: '#D46326', width: '40%'}
-        ]
+          { title: 'Broadcast Graphics Development', colour: '#4643ff', width: '50%' },
+          { title: 'Backend Web Development', colour: '#52A316', width: '50%' },
+          { title: 'Stream Production', colour: '#eb4034', width: '50%' },
+          { title: 'Esports Event Management', colour: '#F3B218', width: '50%' },
+        ],
+        selectedTile: -1
       },
       {
         name: 'Contact',
         tiles: [
-          { id: '1', title: 'LinkedIn', colour: '#2867B2', width: '50%', link: true, url: 'https://www.linkedin.com/in/dan98/' },
-          { id: '3', title: 'GitHub', colour: '#24292e', width: '50%', link: true, url: 'https://github.com/Dan-Shields' },
-          { id: '4', title: 'Twitter', colour: '#1DA1F2', width: '50%', link: true, url: 'https://twitter.com/DanShieldsUK' },
-          { id: '5', title: 'YouTube', colour: '#FF0000', width: '50%', link: true, url: 'https://www.youtube.com/channel/UCRw7uiTK46-r1sdL-gAXaSg' },
-          { id: '2', title: 'Email', colour: '#44AD5A', width: '100%', link: true, url: 'mailto:hello@danielshields.uk' }
-        ]
+          { title: 'LinkedIn', image: tileImages.linkedin, colour: '#2867B2', width: '50%', link: 'https://www.linkedin.com/in/dan98/' },
+          { title: 'GitHub', image: tileImages.github, colour: '#24292e', width: '50%', link: 'https://github.com/Dan-Shields' },
+          { title: 'Twitter', image: tileImages.twitter, colour: '#1DA1F2', width: '50%', link: 'https://twitter.com/DanShieldsUK' },
+          { title: 'Email', image: tileImages.at, colour: '#D289F8', width: '50%', link: 'mailto:hello@danielshields.uk' }
+        ],
+        selectedTile: -1
       }
     ]);
 
     const pageDivs = ref<HTMLElement[]>([]);
 
     const currentPage = ref(1);
-    const pageCount = pages.length;
 
     const goToPage = function (page: number) {
       if (page == currentPage.value){
         return;
       }
 
+      // Move for longer if we're moving by 2 pages at once
       const transitionDuration = Math.abs(currentPage.value - page) > 1 ? '1.5s' : '1s';
 
       pageDivs.value.forEach(pageDiv => {
         pageDiv.style.transitionDuration = transitionDuration;
       });
 
+      // Spin selected page to center
       pageDivs.value[page].style.transform = 'rotate(0deg)';
 
       const rotation = 100;
       
+      // Spin other pages off-screen
       if (currentPage.value < page) {
         // Spinning clockwise
 
@@ -140,6 +180,22 @@ export default defineComponent({
       history.replaceState(null, '', `#${pages[page].name.toLowerCase()}`);
 
       currentPage.value = page;
+    };
+
+    const showContent = function (page: number, tile: number) {
+      pages[page].selectedTile = tile;
+    };
+
+    const instance = getCurrentInstance();
+    const hideContent = function () {
+      if (pages[currentPage.value].selectedTile == -1) return;
+
+      if (instance) {
+        instance.appContext.config.globalProperties.emitter.emit('hide-tile', {page: currentPage.value, tile: pages[currentPage.value].selectedTile});
+      }
+
+      pages[currentPage.value].selectedTile = -1;
+
     };
 
     onBeforeUpdate(() => {
@@ -177,12 +233,16 @@ export default defineComponent({
     });
 
     return {
-      mod,
+      pages,
       pageDivs,
       goToPage,
-      pageCount,
-      pages,
-      currentPage
+      currentPage,
+      showContent,
+      hideContent,
+      arrows: {
+        normal: normalArrow,
+        inverted: invertedArrow
+      }
     };
   },
 
@@ -239,5 +299,47 @@ $margin: min(30px, 3vw);
   &.left {
     transform: rotate(120deg);
   }
+
+  .tile-content {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    transition: opacity 0.25s linear;
+
+    .back {
+      height: 50px;
+      width: 20%;
+      min-width: 80px;
+      max-width: 100%;
+
+      //background-color:red;
+      margin: auto;
+      color: white;
+
+      padding-top: 20px;
+
+      cursor: pointer;
+
+      font-size: 24px;
+
+      &.invert {
+        color: black;
+      }
+
+      img {
+        max-height: 50%;
+        width: auto;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
 }
 </style>

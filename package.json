@@ -22,7 +22,7 @@
     "animejs": "^3.2.1",
     "eslint": "^7.14.0",
     "eslint-plugin-vue": "^7.1.0",
-    "sass": "^1.26.10",
+    "mitt": "^2.1.0",
     "sass": "^1.29.0",
     "typescript": "^3.9.7",
     "vite": "^1.0.0-rc.13",
