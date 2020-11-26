@@ -186,6 +186,7 @@ export default defineComponent({
       });
     };
 
+    // Listen for back-button clicks
     const instance = getCurrentInstance();
     if (instance) {
       instance.appContext.config.globalProperties.emitter.on('hide-tile', (data: { page: number, tile: number }) => {
@@ -248,8 +249,6 @@ $margin: min(30px, 3vw);
     border-radius: 10px;
 
     margin: 0 calc(#{$margin} / 2);
-    
-
 
     display: flex;
     flex-direction: column;
@@ -258,7 +257,7 @@ $margin: min(30px, 3vw);
     cursor: pointer;
 
     > * {
-      transition: opacity 0.1s ease-in-out;
+      transition: opacity 0.25s ease-in-out;
       opacity: 1;
     }
 
