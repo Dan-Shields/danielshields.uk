@@ -135,7 +135,9 @@ export default defineComponent({
           pageDivs.value[2].style['transform'] = 'rotate(-' + (rotation) + 'deg)';
         }
       }
-      
+
+      history.replaceState(null, '', `#${pages[page].name.toLowerCase()}`);
+
       currentPage.value = page;
     };
 
@@ -144,7 +146,17 @@ export default defineComponent({
     });
 
     onMounted(() => {
+      console.log(window.location.hash);
 
+      switch (window.location.hash) {
+        case `#${pages[0].name.toLowerCase()}`:
+          goToPage(0);
+          break;
+
+        case `#${pages[2].name.toLowerCase()}`:
+          goToPage(2);
+          break;
+      }
 
       // Animate all tiles in
       anime({
