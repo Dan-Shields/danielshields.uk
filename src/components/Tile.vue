@@ -159,7 +159,7 @@ export default defineComponent({
 
       anime({
         targets: box.value,
-        scale: 10,
+        scale: 6,
         duration: 600,
         easing: 'easeInExpo',
         complete: () => {

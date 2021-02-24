@@ -50,6 +50,11 @@
               <img :src="arrows[page.tiles[page.selectedTile].invertColours ? 'inverted' : 'normal']">
               BACK
             </div>
+
+            <component
+              :is="currentPageComponent"
+              v-if="currentPageComponent"
+            />
           </div>
         </transition>
       </div>
@@ -63,6 +68,8 @@ import anime from 'animejs';
 import TileComponent from './components/Tile.vue';
 import Header from './components/Header.vue';
 
+import PageContents from './components/pages';
+
 import tileImages from './assets/tile-images';
 import normalArrow from './assets/arrow.svg';
 import invertedArrow from './assets/arrow-inverted.svg';
@@ -70,6 +77,7 @@ import invertedArrow from './assets/arrow-inverted.svg';
 import { defineComponent, ref, reactive, onMounted, onBeforeUpdate, getCurrentInstance } from 'vue';
 
 interface Tile {
+  name: string,
   title: string,
   image?: string,
   colour: string,
@@ -88,50 +96,52 @@ export default defineComponent({
   name: 'App',
   components: {
     Tile: TileComponent,
-    Header
+    Header,
+    ...PageContents
   },
 
   setup() {
+
+    const pageDivs = ref<HTMLElement[]>([]);
+    const currentPage = ref(1);
+    const currentPageComponent = ref<string | null>(null);
+    const instance = getCurrentInstance();
     
     // Information for each page
     const pages = reactive<Page[]>([
       {
         name: 'Experience',
         tiles: [
-          { title: '', image: tileImages.faceit, colour: '#FF5500', width: '60%' },
-          { title: 'NodeCG Packages', image: tileImages.nodecg, colour: '#03615f', width: '40%' },
-          { title: 'Essentials.TF', image: tileImages.essentialstf, colour: '#E5E5E5', width: '40%', invertColours: true },
-          { title: '', image: tileImages.uomesports, colour: '#2E1745', width: '60%' },
-          { title: '', image: tileImages.hiveaid, colour: '#3A3A3C', width: '50%' },
-          { title: '', image: tileImages.kotn, colour: '#120216', width: '50%' }
+          { name: 'Faceit', title: 'FACEIT', image: tileImages.faceit, colour: '#FF5500', width: '55%' },
+          { name: 'NodeCG', title: 'NodeCG', image: tileImages.nodecg, colour: '#03615f', width: '45%' },
+          { name: 'Essentials', title: 'Essentials.TF', image: tileImages.essentialstf, colour: '#E5E5E5', width: '45%', invertColours: true },
+          { name: 'UoM', title: 'UoM Esports', image: tileImages.uomesports, colour: '#2E1745', width: '55%' },
+          { name: 'HiveAid', title: 'HiveAid', image: tileImages.hiveaid, colour: '#3A3A3C', width: '50%' },
+          { name: 'KotN', title: 'King of the North', image: tileImages.kotn, colour: '#120216', width: '50%' }
         ],
         selectedTile: -1
       },
       {
         name: 'Services',
         tiles: [
-          { title: 'Broadcast Graphics Development', colour: '#4643ff', width: '50%' },
-          { title: 'Backend Web Development', colour: '#52A316', width: '50%' },
-          { title: 'Stream Production', colour: '#eb4034', width: '50%' },
-          { title: 'Esports Event Management', colour: '#F3B218', width: '50%' },
+          { name: 'BroadcastGraphics', title: 'Broadcast Graphics Development', colour: '#4643ff', width: '50%' },
+          { name: 'WebDevelopment', title: 'Backend Web Development', colour: '#52A316', width: '50%' },
+          { name: 'StreamProduction', title: 'Stream Production', colour: '#eb4034', width: '50%' },
+          { name: 'EventManagement', title: 'Esports Event Management', colour: '#F3B218', width: '50%' },
         ],
         selectedTile: -1
       },
       {
         name: 'Contact',
         tiles: [
-          { title: 'LinkedIn', image: tileImages.linkedin, colour: '#2867B2', width: '50%', link: 'https://www.linkedin.com/in/dan98/' },
-          { title: 'GitHub', image: tileImages.github, colour: '#24292e', width: '50%', link: 'https://github.com/Dan-Shields' },
-          { title: 'Twitter', image: tileImages.twitter, colour: '#1DA1F2', width: '50%', link: 'https://twitter.com/DanShieldsUK' },
-          { title: 'Email', image: tileImages.at, colour: '#D289F8', width: '50%', link: 'mailto:hello@danielshields.uk' }
+          { name: '', title: 'LinkedIn', image: tileImages.linkedin, colour: '#2867B2', width: '50%', link: 'https://www.linkedin.com/in/dan98/' },
+          { name: '', title: 'GitHub', image: tileImages.github, colour: '#24292e', width: '50%', link: 'https://github.com/Dan-Shields' },
+          { name: '', title: 'Twitter', image: tileImages.twitter, colour: '#1DA1F2', width: '50%', link: 'https://twitter.com/DanShieldsUK' },
+          { name: '', title: 'Email', image: tileImages.at, colour: '#D289F8', width: '50%', link: 'mailto:hello@danielshields.uk' }
         ],
         selectedTile: -1
       }
     ]);
-
-    const pageDivs = ref<HTMLElement[]>([]);
-
-    const currentPage = ref(1);
 
     const goToPage = function (page: number) {
       if (page == currentPage.value){
@@ -182,11 +192,18 @@ export default defineComponent({
       currentPage.value = page;
     };
 
-    const showContent = function (page: number, tile: number) {
-      pages[page].selectedTile = tile;
+    const showContent = function (pageIndex: number, tileIndex: number) {
+      pages[pageIndex].selectedTile = tileIndex;
+
+      const tile = pages[pageIndex].tiles[tileIndex];
+
+      if (tile.name) {
+        currentPageComponent.value = tile.name;
+      } else {
+        currentPageComponent.value = null;
+      }
     };
 
-    const instance = getCurrentInstance();
     const hideContent = function () {
       if (pages[currentPage.value].selectedTile == -1) return;
 
@@ -242,7 +259,8 @@ export default defineComponent({
       arrows: {
         normal: normalArrow,
         inverted: invertedArrow
-      }
+      },
+      currentPageComponent
     };
   },
 
