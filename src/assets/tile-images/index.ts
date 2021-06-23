@@ -8,5 +8,6 @@ import nodecg from './nodecg.png';
 import at from './at.png';
 import kotn from './kotn.png';
 import hiveaid from './hiveaid.png';
+import me from './me.jpg';
 
-export default { essentialstf, faceit, github, linkedin, twitter, uomesports, nodecg, at, hiveaid, kotn };
+export default { essentialstf, faceit, github, linkedin, twitter, uomesports, nodecg, at, hiveaid, kotn, me };

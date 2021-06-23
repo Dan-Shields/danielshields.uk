@@ -1,65 +1,53 @@
 <template>
-  <div
-    class="body"
-  >
-    <Header
-      :pages="pages.map(page => page.name)"
-      :current-page="currentPage"
-      @go-to-page="goToPage"
-    />
-
-    <template 
-      v-for="(page, index) in pages"
-      :key="index"
+    <div
+        class="body"
     >
-      <div 
-        :id="page.name.toLowerCase()"
-
-        :ref="el => { if (el) pageDivs[index] = el }"
-        
-        class="page"
-        :class="{ 
-          right: index == 2,
-          left: index == 0
-        }"
-      >
-        <Tile
-          v-for="(tile, tileIndex) in page.tiles"
-          :key="tileIndex"
-          :width="tile.width"
-          :color="tile.colour"
-          :title="tile.title"
-          :index="tileIndex"
-          :page-index="index"
-          :link="tile.link"
-          :page-name="page.name"
-          :image-url="tile.image || ''"
-          @selected="showContent"
+        <Header
+            :pages="pages.map(page => page.name)"
+            :current-page="currentPage"
+            @go-to-page="goToPage"
         />
 
-        <transition name="fade">
-          <div
-            v-if="page.selectedTile != -1"
-            class="tile-content"
-          >
+        <template 
+            v-for="(page, index) in pages"
+            :key="index"
+        >
             <div
-              class="back"
-              :class="{ invert: page.tiles[page.selectedTile].invertColours }"
-              @click="hideContent"
-            >
-              <img :src="arrows[page.tiles[page.selectedTile].invertColours ? 'inverted' : 'normal']">
-              BACK
-            </div>
+                :id="page.name.toLowerCase().replaceAll(' ', '-')"
 
-            <component
-              :is="currentPageComponent"
-              v-if="currentPageComponent"
-            />
-          </div>
-        </transition>
-      </div>
-    </template>
-  </div>
+                :ref="el => { if (el) pageDivs[index] = el }"
+        
+                class="page"
+                :class="{ 
+                    right: index == 2,
+                    left: index == 0
+                }"
+            >
+                <template v-if="page.tiled && page.tiles !== undefined">
+                    <Tile
+                        v-for="(tile, tileIndex) in page.tiles"
+                        :key="tileIndex"
+                        :width="tile.width"
+                        :color="tile.colour"
+                        :title="tile.title"
+                        :index="tileIndex"
+                        :page-index="index"
+                        :link="tile.link"
+                        :page-name="page.name"
+                        :image-url="tile.image ?? ''"
+                        :full-image="tile.fullImage ?? false"
+                        :interactive="tile.interactive ?? true"
+                        class="animate-in"
+                    />
+                </template>
+                <template v-else-if="pageContents[index]">
+                    <component
+                        :is="pageContents[index]"
+                    />
+                </template>
+            </div>
+        </template>
+    </div>
 </template>
 
 <script lang="ts">
@@ -68,207 +56,196 @@ import anime from 'animejs';
 import TileComponent from './components/Tile.vue';
 import Header from './components/Header.vue';
 
-import PageContents from './components/pages';
+import Pages from './components/pages';
 
 import tileImages from './assets/tile-images';
 import normalArrow from './assets/arrow.svg';
 import invertedArrow from './assets/arrow-inverted.svg';
 
-import { defineComponent, ref, reactive, onMounted, onBeforeUpdate, getCurrentInstance } from 'vue';
+import { defineComponent, ref, reactive, onMounted, onBeforeUpdate } from 'vue';
 
 interface Tile {
-  name: string,
-  title: string,
-  image?: string,
-  colour: string,
-  width: string,
-  link?: string,
-  invertColours?: boolean
+    name: string,
+    title: string,
+    image?: string,
+    fullImage?: boolean,
+    colour?: string,
+    width: string,
+    link?: string,
+    invertColours?: boolean,
+    interactive?: boolean
 }
 
 interface Page {
-  name: string,
-  tiles: Tile[],
-  selectedTile: number
+    name: string,
+    tiled: boolean
+    tiles?: Tile[],
+    selectedTile?: number
 }
 
 export default defineComponent({
-  name: 'App',
-  components: {
-    Tile: TileComponent,
-    Header,
-    ...PageContents
-  },
+    name: 'App',
+    components: {
+        Tile: TileComponent,
+        Header,
+        ...Pages
+    },
 
-  setup() {
+    setup() {
 
-    const pageDivs = ref<HTMLElement[]>([]);
-    const currentPage = ref(1);
-    const currentPageComponent = ref<string | null>(null);
-    const instance = getCurrentInstance();
+        const pageDivs = ref<HTMLElement[]>([]);
+        const currentPage = ref(1);
     
-    // Information for each page
-    const pages = reactive<Page[]>([
-      {
-        name: 'Experience',
-        tiles: [
-          { name: 'Faceit', title: 'FACEIT', image: tileImages.faceit, colour: '#FF5500', width: '55%' },
-          { name: 'NodeCG', title: 'NodeCG', image: tileImages.nodecg, colour: '#03615f', width: '45%' },
-          { name: 'Essentials', title: 'Essentials.TF', image: tileImages.essentialstf, colour: '#E5E5E5', width: '45%', invertColours: true },
-          { name: 'UoM', title: 'UoM Esports', image: tileImages.uomesports, colour: '#2E1745', width: '55%' },
-          { name: 'HiveAid', title: 'HiveAid', image: tileImages.hiveaid, colour: '#3A3A3C', width: '50%' },
-          { name: 'KotN', title: 'King of the North', image: tileImages.kotn, colour: '#120216', width: '50%' }
-        ],
-        selectedTile: -1
-      },
-      {
-        name: 'Services',
-        tiles: [
-          { name: 'BroadcastGraphics', title: 'Broadcast Graphics Development', colour: '#4643ff', width: '50%' },
-          { name: 'WebDevelopment', title: 'Backend Web Development', colour: '#52A316', width: '50%' },
-          { name: 'StreamProduction', title: 'Stream Production', colour: '#eb4034', width: '50%' },
-          { name: 'EventManagement', title: 'Esports Event Management', colour: '#F3B218', width: '50%' },
-        ],
-        selectedTile: -1
-      },
-      {
-        name: 'Contact',
-        tiles: [
-          { name: '', title: 'LinkedIn', image: tileImages.linkedin, colour: '#2867B2', width: '50%', link: 'https://www.linkedin.com/in/dan98/' },
-          { name: '', title: 'GitHub', image: tileImages.github, colour: '#24292e', width: '50%', link: 'https://github.com/Dan-Shields' },
-          { name: '', title: 'Twitter', image: tileImages.twitter, colour: '#1DA1F2', width: '50%', link: 'https://twitter.com/DanShieldsUK' },
-          { name: '', title: 'Email', image: tileImages.at, colour: '#D289F8', width: '50%', link: 'mailto:hello@danielshields.uk' }
-        ],
-        selectedTile: -1
-      }
-    ]);
+        // Information for each page
+        const pages = reactive<Page[]>([
+            {
+                name: 'Broadcast Operator',
+                tiled: false
+            },
+            {
+                name: 'Contact',
+                tiled: true,
+                tiles: [
+                    { name: '', title: 'Banner', image: tileImages.me, fullImage: true, width: '100%', interactive: false },
+                    { name: '', title: 'LinkedIn', image: tileImages.linkedin, colour: '#2867B2', width: '50%', link: 'https://www.linkedin.com/in/dan98/' },
+                    { name: '', title: 'GitHub', image: tileImages.github, colour: '#24292e', width: '50%', link: 'https://github.com/Dan-Shields' },
+                    { name: '', title: 'Twitter', image: tileImages.twitter, colour: '#1DA1F2', width: '50%', link: 'https://twitter.com/DanShieldsUK' },
+                    { name: '', title: 'Email', image: tileImages.at, colour: '#D289F8', width: '50%', link: 'mailto:hello@danielshields.uk' }
+                ],
+                selectedTile: -1
+            },
+            {
+                name: 'Software Developer',
+                tiled: false
+            }      
+        ]);
 
-    const goToPage = function (page: number) {
-      if (page == currentPage.value){
-        return;
-      }
+        const goToPage = function (page: number, skipAnim = false) {
+            if (page == currentPage.value){
+                return;
+            }
 
-      // Move for longer if we're moving by 2 pages at once
-      const transitionDuration = Math.abs(currentPage.value - page) > 1 ? '1.5s' : '1s';
+            if (!skipAnim) {
+                // Move for longer if we're moving by 2 pages at once
+                const transitionDuration = Math.abs(currentPage.value - page) > 1 ? '1.5s' : '1s';
+  
+                pageDivs.value.forEach(pageDiv => {
+                    pageDiv.style.transitionDuration = transitionDuration;
+                });
+            } else {
+                pageDivs.value.forEach(pageDiv => {
+                    pageDiv.style.transitionDuration = '0s';
+                });
+            }
 
-      pageDivs.value.forEach(pageDiv => {
-        pageDiv.style.transitionDuration = transitionDuration;
-      });
+            // Spin selected page to center
+            pageDivs.value[page].style.transform = 'rotate(0deg)';
 
-      // Spin selected page to center
-      pageDivs.value[page].style.transform = 'rotate(0deg)';
-
-      const rotation = 100;
+            const rotation = 110;
       
-      // Spin other pages off-screen
-      if (currentPage.value < page) {
-        // Spinning clockwise
+            // Spin other pages off-screen
+            if (currentPage.value < page) {
+                // Spinning clockwise
 
-        if (page == 2) {
-          // Moving to far right
-          pageDivs.value[0].style.transform = 'rotate(' + (rotation * 2) + 'deg)';
-          pageDivs.value[1].style.transform = 'rotate(' + (rotation) + 'deg)';
-        } else {
-          // Moving to middle
-          pageDivs.value[0].style.transform = 'rotate(' + (rotation) + 'deg)';
-          pageDivs.value[2].style.transform = 'rotate(-' + (rotation) + 'deg)';
-        }
-      } else {
-        // Spinning anticlockwise
+                if (page == 2) {
+                    // Moving to far right
+                    pageDivs.value[0].style.transform = 'rotate(' + (rotation * 2) + 'deg)';
+                    pageDivs.value[1].style.transform = 'rotate(' + (rotation) + 'deg)';
+                } else {
+                    // Moving to middle
+                    pageDivs.value[0].style.transform = 'rotate(' + (rotation) + 'deg)';
+                    pageDivs.value[2].style.transform = 'rotate(-' + (rotation) + 'deg)';
+                }
+            } else {
+                // Spinning anticlockwise
 
-        if (page == 0) {
-          // Moving to far left
-          pageDivs.value[1].style['transform'] = 'rotate(-' + (rotation) + 'deg)';
-          pageDivs.value[2].style['transform'] = 'rotate(-' + (rotation * 2) + 'deg)';
-        } else {
-          // Moving to middle
-          pageDivs.value[0].style['transform'] = 'rotate(' + (rotation) + 'deg)';
-          pageDivs.value[2].style['transform'] = 'rotate(-' + (rotation) + 'deg)';
-        }
-      }
+                if (page == 0) {
+                    // Moving to far left
+                    pageDivs.value[1].style['transform'] = 'rotate(-' + (rotation) + 'deg)';
+                    pageDivs.value[2].style['transform'] = 'rotate(-' + (rotation * 2) + 'deg)';
+                } else {
+                    // Moving to middle
+                    pageDivs.value[0].style['transform'] = 'rotate(' + (rotation) + 'deg)';
+                    pageDivs.value[2].style['transform'] = 'rotate(-' + (rotation) + 'deg)';
+                }
+            }
 
-      history.replaceState(null, '', `#${pages[page].name.toLowerCase()}`);
+            history.replaceState(null, '', `#${pages[page].name.toLowerCase().replaceAll(' ', '-')}`);
 
-      currentPage.value = page;
-    };
+            currentPage.value = page;
+        };
 
-    const showContent = function (pageIndex: number, tileIndex: number) {
-      pages[pageIndex].selectedTile = tileIndex;
+        onBeforeUpdate(() => {
+            pageDivs.value = [];
+        });
 
-      const tile = pages[pageIndex].tiles[tileIndex];
+        onMounted(() => {
+            switch (window.location.hash) {
+                case `#${pages[0].name.toLowerCase().replaceAll(' ', '-')}`:
+                    goToPage(0, true);
+                    break;
 
-      if (tile.name) {
-        currentPageComponent.value = tile.name;
-      } else {
-        currentPageComponent.value = null;
-      }
-    };
+                case `#${pages[2].name.toLowerCase().replaceAll(' ', '-')}`:
+                    goToPage(2, true);
+                    break;
+            }
 
-    const hideContent = function () {
-      if (pages[currentPage.value].selectedTile == -1) return;
+            pageDivs.value.forEach((pageDiv, index) => {
+                const elements = pageDiv.querySelectorAll('.animate-in');
 
-      if (instance) {
-        instance.appContext.config.globalProperties.emitter.emit('hide-tile', {page: currentPage.value, tile: pages[currentPage.value].selectedTile});
-      }
+                console.log(elements)
 
-      pages[currentPage.value].selectedTile = -1;
+                if (currentPage.value === index) {
+                    // Animate all elements in
+                    anime({
+                        targets: elements,
+                        opacity: {
+                            value: [0, 1],
+                            duration: 1250,
+                            //delay: 750,
+                            easing: 'easeOutQuart'
+                        },
+                        scale: {
+                            value: [0, 1],
+                            duration: 1500,
+                            easing: 'easeOutElastic(1, 1)'
+                        },
+                        delay: anime.stagger(50, { start: 700 })
+                    });
+                } else {
+                    setTimeout(() => {
+                        elements.forEach(element => {
+                            if (!(element instanceof HTMLElement)) return
+                            element.style.opacity = '1';
+                            element.style.transform = 'scale(1)';
+                        })
+                    }, 1750)
+                }
 
-    };
+            });
+        });
 
-    onBeforeUpdate(() => {
-      pageDivs.value = [];
-    });
+        const pageContents = []
+        pageContents[0] = Pages.Broadcast
 
-    onMounted(() => {
-      console.log(window.location.hash);
-
-      switch (window.location.hash) {
-        case `#${pages[0].name.toLowerCase()}`:
-          goToPage(0);
-          break;
-
-        case `#${pages[2].name.toLowerCase()}`:
-          goToPage(2);
-          break;
-      }
-
-      // Animate all tiles in
-      anime({
-        targets: '.tile',
-        opacity: {
-          value: [0, 1],
-          duration: 1000,
-          easing: 'easeOutQuart'
-        },
-        scale: {
-          value: [0, 1],
-          duration: 1500,
-          easing: 'easeOutElastic(1, 1)'
-        },
-        delay: anime.stagger(50, { start: 1250 })
-      });
-    });
-
-    return {
-      pages,
-      pageDivs,
-      goToPage,
-      currentPage,
-      showContent,
-      hideContent,
-      arrows: {
-        normal: normalArrow,
-        inverted: invertedArrow
-      },
-      currentPageComponent
-    };
-  },
+        return {
+            pages,
+            pageDivs,
+            goToPage,
+            currentPage,
+            arrows: {
+                normal: normalArrow,
+                inverted: invertedArrow
+            },
+            pageContents
+        };
+    },
 
 });
 </script>
 
 <style lang="scss" scoped>
-$width: min(640px, 100%);
+$width: min(800px, 100%);
 $margin: min(30px, 3vw);
 
 .body {
@@ -295,15 +272,14 @@ $margin: min(30px, 3vw);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: calc(#{$margin} / 2);
-  padding-bottom: 0;
-  padding-top: $margin;
+  margin: calc(#{$margin} / 2);
+  margin-bottom: 0;
+  margin-top: $margin;
 
   opacity: 1;
 
   transform: rotate(0deg);
 
-  overflow: hidden;
   border-radius: 20px;
 
   transform-origin: center -420px;
@@ -316,44 +292,6 @@ $margin: min(30px, 3vw);
 
   &.left {
     transform: rotate(120deg);
-  }
-
-  .tile-content {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-
-    transition: opacity 0.25s linear;
-
-    .back {
-      height: 50px;
-      width: 20%;
-      min-width: 80px;
-      max-width: 100%;
-
-      //background-color:red;
-      margin: auto;
-      color: white;
-
-      padding-top: 20px;
-
-      cursor: pointer;
-
-      font-size: 24px;
-
-      &.invert {
-        color: black;
-      }
-
-      img {
-        max-height: 50%;
-        width: auto;
-        display: inline-block;
-      }
-    }
   }
 }
 
