@@ -1,23 +1,21 @@
-import { createApp } from 'vue';
+import { createApp } from 'vue'
 
-import App from './App.vue';
-import './index.css';
+import './assets/GitHubPinner.js'
+import './assets/GitHubPinner.css'
 
-import mitt from 'mitt';
-const emitter = mitt();
+import App from './App.vue'
+import './index.css'
 
 function is_touch_enabled() { 
     return ( 'ontouchstart' in window ) ||  
-         ( navigator.maxTouchPoints > 0 ) ||  
-         ( navigator.msMaxTouchPoints > 0 ); 
+         ( navigator.maxTouchPoints > 0 ) 
 }
 
 declare global {
     interface Window { isTouchEnabled: boolean; }
 }
 
-window.isTouchEnabled = is_touch_enabled();
+window.isTouchEnabled = is_touch_enabled()
 
-const app = createApp(App);
-app.config.globalProperties.emitter = emitter;
-app.mount('#app');
+const app = createApp(App)
+app.mount('#app')

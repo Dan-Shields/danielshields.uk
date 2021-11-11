@@ -31,45 +31,45 @@
                 class="title"
                 :class="{ interactive }"
             >
-                {{ title }}
+                <slot name="title"></slot>
             </h1>
-            <slot />
+            <slot></slot>
         </div>
     </a>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch, getCurrentInstance } from 'vue';
+import { defineComponent, ref, watch } from 'vue'
 
-import anime from 'animejs';
+import anime from 'animejs'
 
 const lightenDarkenColor = function (col: string, amt: number) {
-    var usePound = false;
+    var usePound = false
 
     if (col[0] == '#') {
-        col = col.slice(1);
-        usePound = true;
+        col = col.slice(1)
+        usePound = true
     }
 
-    var num = parseInt(col,16);
+    var num = parseInt(col,16)
 
-    var r = (num >> 16) + amt;
+    var r = (num >> 16) + amt
 
-    if (r > 255) r = 255;
-    else if  (r < 0) r = 0;
+    if (r > 255) r = 255
+    else if  (r < 0) r = 0
 
-    var b = ((num >> 8) & 0x00FF) + amt;
+    var b = ((num >> 8) & 0x00FF) + amt
 
-    if (b > 255) b = 255;
-    else if  (b < 0) b = 0;
+    if (b > 255) b = 255
+    else if  (b < 0) b = 0
 
-    var g = (num & 0x0000FF) + amt;
+    var g = (num & 0x0000FF) + amt
 
-    if (g > 255) g = 255;
-    else if (g < 0) g = 0;
+    if (g > 255) g = 255
+    else if (g < 0) g = 0
 
-    return (usePound?'#':'') + (g | (b << 8) | (r << 16)).toString(16);
-};
+    return (usePound?'#':'') + (g | (b << 8) | (r << 16)).toString(16)
+}
 
 export default defineComponent({
     name: 'Tile',
@@ -82,10 +82,6 @@ export default defineComponent({
         width: {
             type: String,
             default: '100%'
-        },
-        title: {
-            type: String,
-            default: ''
         },
         index: {
             type: Number,
@@ -123,46 +119,46 @@ export default defineComponent({
         let backgroundStyle = ref({
             background: props.fullImage && props.imageUrl ? `url("${props.imageUrl}") center/cover no-repeat` : 'linear-gradient(to bottom right, ' + props.color + ', ' + lightenDarkenColor(props.color, 50) + ')',
             cursor: props.interactive ? 'pointer' : 'unset'
-        });
+        })
     
         let widthStyle = ref({
             width: props.width      
-        });
+        })
 
-        const tile = ref<HTMLElement | null>(null);
-        const selected = ref(false);
-        const hover = ref(false);
+        const tile = ref<HTMLElement | null>(null)
+        const selected = ref(false)
+        const hover = ref(false)
 
         const updateHover = function (value: boolean) {
             if (!window.isTouchEnabled && !selected.value) {
-                hover.value = value;
+                hover.value = value
             }
-        };
+        }
+
+        const box = ref<HTMLElement | null>(null)
 
         watch(hover, newHover => {
             if (selected.value || !props.interactive)
-                return;
+                return
 
             anime({
                 targets: box.value,
                 scale: newHover ? 1.1 : 1,
                 duration: 500,
                 easing: 'easeOutElastic(1, 0.7)'
-            });
-        });
-
-        const box = ref<HTMLElement | null>(null);
+            })
+        })
 
         const select = function () {
             if (!props.interactive || props.link || selected.value) return
 
-            selected.value = true;
+            selected.value = true
 
-            anime.remove(box.value);
+            anime.remove(box.value)
             anime.set(box.value, {
                 opacity: 1,
                 scale: window.isTouchEnabled ? 1 : 1.1
-            });
+            })
 
             anime({
                 targets: box.value,
@@ -172,14 +168,14 @@ export default defineComponent({
                 complete: () => {
                     emit('selected', props.pageIndex, props.index)
                 }
-            });
-        };
+            })
+        }
 
         const back = function () {
             if (!selected.value)
-                return;
+                return
 
-            anime.remove(box.value);
+            anime.remove(box.value)
 
             anime({
                 targets: box.value,
@@ -187,21 +183,10 @@ export default defineComponent({
                 duration: 600,
                 easing: 'easeInOutExpo',
                 complete: () => {
-                    hover.value = false;
-                    selected.value = false;
+                    hover.value = false
+                    selected.value = false
                 }
-            });
-        };
-
-        // Listen for back-button clicks
-        const instance = getCurrentInstance();
-        if (instance) {
-            instance.appContext.config.globalProperties.emitter.on('hide-tile', (data: { page: number, tile: number }) => {
-                console.log('msg received');
-                if (data.page == props.pageIndex && data.tile == props.index) {
-                    back();
-                }
-            });
+            })
         }
 
         return {
@@ -213,9 +198,9 @@ export default defineComponent({
             updateHover,
             select,
             back
-        };
+        }
     }
-});
+})
 </script>
 
 <style lang="scss" scoped>

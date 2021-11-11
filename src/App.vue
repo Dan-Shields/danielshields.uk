@@ -15,7 +15,7 @@
             <div
                 :id="page.name.toLowerCase().replaceAll(' ', '-')"
 
-                :ref="el => { if (el) pageDivs[index] = el }"
+                :ref="el => { if (el) pageDivs[index] = el as HTMLElement }"
         
                 class="page"
                 :class="{ 
@@ -29,7 +29,6 @@
                         :key="tileIndex"
                         :width="tile.width"
                         :color="tile.colour"
-                        :title="tile.title"
                         :index="tileIndex"
                         :page-index="index"
                         :link="tile.link"
@@ -38,7 +37,11 @@
                         :full-image="tile.fullImage ?? false"
                         :interactive="tile.interactive ?? true"
                         class="animate-in"
-                    />
+                    >
+                        <template #title>
+                            {{ tile.title }}
+                        </template>
+                    </Tile>
                 </template>
                 <template v-else-if="pageContents[index]">
                     <component
@@ -51,18 +54,16 @@
 </template>
 
 <script lang="ts">
-import anime from 'animejs';
+import anime from 'animejs'
 
-import TileComponent from './components/Tile.vue';
-import Header from './components/Header.vue';
+import TileComponent from './components/Tile.vue'
+import Header from './components/Header.vue'
 
-import Pages from './components/pages';
+import Pages from './components/pages'
 
-import tileImages from './assets/tile-images';
-import normalArrow from './assets/arrow.svg';
-import invertedArrow from './assets/arrow-inverted.svg';
+import tileImages from './assets/tile-images'
 
-import { defineComponent, ref, reactive, onMounted, onBeforeUpdate } from 'vue';
+import { defineComponent, ref, reactive, onMounted, onBeforeUpdate } from 'vue'
 
 interface Tile {
     name: string,
@@ -93,8 +94,8 @@ export default defineComponent({
 
     setup() {
 
-        const pageDivs = ref<HTMLElement[]>([]);
-        const currentPage = ref(1);
+        const pageDivs = ref<HTMLElement[]>([])
+        const currentPage = ref(1)
     
         // Information for each page
         const pages = reactive<Page[]>([
@@ -118,30 +119,30 @@ export default defineComponent({
                 name: 'Software Developer',
                 tiled: false
             }      
-        ]);
+        ])
 
         const goToPage = function (page: number, skipAnim = false) {
             if (page == currentPage.value){
-                return;
+                return
             }
 
             if (!skipAnim) {
                 // Move for longer if we're moving by 2 pages at once
-                const transitionDuration = Math.abs(currentPage.value - page) > 1 ? '1.5s' : '1s';
+                const transitionDuration = Math.abs(currentPage.value - page) > 1 ? '1.5s' : '1s'
   
                 pageDivs.value.forEach(pageDiv => {
-                    pageDiv.style.transitionDuration = transitionDuration;
-                });
+                    pageDiv.style.transitionDuration = transitionDuration
+                })
             } else {
                 pageDivs.value.forEach(pageDiv => {
-                    pageDiv.style.transitionDuration = '0s';
-                });
+                    pageDiv.style.transitionDuration = '0s'
+                })
             }
 
             // Spin selected page to center
-            pageDivs.value[page].style.transform = 'rotate(0deg)';
+            pageDivs.value[page].style.transform = 'rotate(0deg)'
 
-            const rotation = 110;
+            const rotation = 110
       
             // Spin other pages off-screen
             if (currentPage.value < page) {
@@ -149,51 +150,49 @@ export default defineComponent({
 
                 if (page == 2) {
                     // Moving to far right
-                    pageDivs.value[0].style.transform = 'rotate(' + (rotation * 2) + 'deg)';
-                    pageDivs.value[1].style.transform = 'rotate(' + (rotation) + 'deg)';
+                    pageDivs.value[0].style.transform = 'rotate(' + (rotation * 2) + 'deg)'
+                    pageDivs.value[1].style.transform = 'rotate(' + (rotation) + 'deg)'
                 } else {
                     // Moving to middle
-                    pageDivs.value[0].style.transform = 'rotate(' + (rotation) + 'deg)';
-                    pageDivs.value[2].style.transform = 'rotate(-' + (rotation) + 'deg)';
+                    pageDivs.value[0].style.transform = 'rotate(' + (rotation) + 'deg)'
+                    pageDivs.value[2].style.transform = 'rotate(-' + (rotation) + 'deg)'
                 }
             } else {
                 // Spinning anticlockwise
 
                 if (page == 0) {
                     // Moving to far left
-                    pageDivs.value[1].style['transform'] = 'rotate(-' + (rotation) + 'deg)';
-                    pageDivs.value[2].style['transform'] = 'rotate(-' + (rotation * 2) + 'deg)';
+                    pageDivs.value[1].style['transform'] = 'rotate(-' + (rotation) + 'deg)'
+                    pageDivs.value[2].style['transform'] = 'rotate(-' + (rotation * 2) + 'deg)'
                 } else {
                     // Moving to middle
-                    pageDivs.value[0].style['transform'] = 'rotate(' + (rotation) + 'deg)';
-                    pageDivs.value[2].style['transform'] = 'rotate(-' + (rotation) + 'deg)';
+                    pageDivs.value[0].style['transform'] = 'rotate(' + (rotation) + 'deg)'
+                    pageDivs.value[2].style['transform'] = 'rotate(-' + (rotation) + 'deg)'
                 }
             }
 
-            history.replaceState(null, '', `#${pages[page].name.toLowerCase().replaceAll(' ', '-')}`);
+            history.replaceState(null, '', `#${pages[page].name.toLowerCase().replaceAll(' ', '-')}`)
 
-            currentPage.value = page;
-        };
+            currentPage.value = page
+        }
 
         onBeforeUpdate(() => {
-            pageDivs.value = [];
-        });
+            pageDivs.value = []
+        })
 
         onMounted(() => {
             switch (window.location.hash) {
                 case `#${pages[0].name.toLowerCase().replaceAll(' ', '-')}`:
-                    goToPage(0, true);
-                    break;
+                    goToPage(0, true)
+                    break
 
                 case `#${pages[2].name.toLowerCase().replaceAll(' ', '-')}`:
-                    goToPage(2, true);
-                    break;
+                    goToPage(2, true)
+                    break
             }
 
             pageDivs.value.forEach((pageDiv, index) => {
-                const elements = pageDiv.querySelectorAll('.animate-in');
-
-                console.log(elements)
+                const elements = pageDiv.querySelectorAll('.animate-in')
 
                 if (currentPage.value === index) {
                     // Animate all elements in
@@ -211,37 +210,34 @@ export default defineComponent({
                             easing: 'easeOutElastic(1, 1)'
                         },
                         delay: anime.stagger(50, { start: 700 })
-                    });
+                    })
                 } else {
                     setTimeout(() => {
                         elements.forEach(element => {
                             if (!(element instanceof HTMLElement)) return
-                            element.style.opacity = '1';
-                            element.style.transform = 'scale(1)';
+                            element.style.opacity = '1'
+                            element.style.transform = 'scale(1)'
                         })
                     }, 1750)
                 }
 
-            });
-        });
+            })
+        })
 
         const pageContents = []
         pageContents[0] = Pages.Broadcast
+        pageContents[2] = Pages.Software
 
         return {
             pages,
             pageDivs,
             goToPage,
             currentPage,
-            arrows: {
-                normal: normalArrow,
-                inverted: invertedArrow
-            },
             pageContents
-        };
+        }
     },
 
-});
+})
 </script>
 
 <style lang="scss" scoped>

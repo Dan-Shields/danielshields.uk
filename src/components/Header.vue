@@ -26,9 +26,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted, PropType } from 'vue';
+import { defineComponent, ref, onMounted, PropType } from 'vue'
 
-import anime from 'animejs';
+import anime from 'animejs'
 
 export default defineComponent({
     name: 'Header',
@@ -55,8 +55,8 @@ export default defineComponent({
     emits: ['go-to-page'],
 
     setup() {
-        const titleDiv = ref(null);
-        const navbar = ref(null);
+        const titleDiv = ref(null)
+        const navbar = ref(null)
 
         onMounted(() => {
             anime({
@@ -72,15 +72,15 @@ export default defineComponent({
                     easing: 'easeOutElastic(1, 1)'
                 },
                 delay: anime.stagger(500, { start: 100 }),
-            });
-        });
+            })
+        })
 
         return {
             titleDiv,
             navbar
-        };
+        }
     }
-});
+})
 </script>
 
 <style lang="scss" scoped>
