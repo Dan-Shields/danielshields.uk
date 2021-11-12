@@ -124,15 +124,11 @@ $height: 100px;
       user-select: none;
       cursor: pointer;
 
-      color: #2c3e50;
-
-      &:hover {
-        color: #18222c;
-      }
+      color: #748291;
+      text-decoration: underline;
       
-      &.active {
+      &.active, &:hover {
         color: darken(#2c3e50, 10%);
-        text-decoration: underline;
       }
     }
   }
