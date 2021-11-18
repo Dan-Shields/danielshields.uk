@@ -213,25 +213,7 @@ $margin: min(30px, 3vw);
   max-height: 50vw;
   opacity: 0;
 
-  margin-bottom: $margin;
-
-  &.selected {
-    z-index: 500;
-
-    .box {
-      cursor: default !important;
-
-      .title {
-        cursor: default !important;
-        opacity: 0;
-      }
-
-      .image {
-        cursor: default !important;
-        opacity: 0;
-      }
-    }
-  }
+  margin-top: $margin;
 
   .box {
     position: absolute;
@@ -252,8 +234,6 @@ $margin: min(30px, 3vw);
       transition: opacity 0.25s ease-in-out;
       opacity: 1;
     }
-
-    //box-shadow: 5px 5px 15px 0px rgba(59, 59, 59, 0.479);
 
     .title {
       color: white;

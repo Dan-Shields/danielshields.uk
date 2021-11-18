@@ -5,11 +5,11 @@
         :color="'#2781FF'"
         :index="0"
         :interactive="false"
-        class="animate-in"
+        class="animate-in header-tile"
         style="color: white"
     >
         <template #title>
-            <u>Status:</u> Looking for Opportunities
+            <span class="header-title"><u>Status:</u> Open to new clients</span>
         </template>
         <div class="header">
             <div style="flex-basis: 1; width: 40%">
@@ -187,14 +187,12 @@ $margin: min(30px, 3vw);
 .experience {
     border-radius: 10px;
     width: calc(100% - #{$margin});
-    margin: 0 calc(#{$margin} / 2);
+    margin: $margin calc(#{$margin} / 2);
     height: 100%;
 
     background-color: rgb(243, 243, 243);
 
     padding: 0;
-
-    margin-bottom: 50px;
 
     opacity: 0;
 
@@ -258,10 +256,25 @@ $margin: min(30px, 3vw);
     }
 }
 
+
+.header-tile {
+    position: relative;
+
+    .header-title {
+        position: absolute;
+        top: 25px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+    }
+}
+
 .header {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
     justify-content: space-around;
     text-align: left;
+    max-height: 60%;
 }
 </style>

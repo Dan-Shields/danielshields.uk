@@ -5,22 +5,26 @@
         :color="'#ff9a0e'"
         :index="0"
         :interactive="false"
-        class="animate-in"
+        class="animate-in header-tile"
         style="color: white"
     >
         <template #title>
-            <u>Status:</u> Looking for Opportunities
+            <span class="header-title"><span style="font-weight: 300; font-size: 0.8em">Status:</span><br>Open to new clients</span>
         </template>
         <div class="header">
             <div style="flex-basis: 1; width: 40%">
-                <p>
+                <p style="font-size: 1.33em; margin-bottom: 0">
+                    
                 </p>
             </div>
 
             <div style="flex-basis: 1; width: 40%">
-                <p style="font-size: 1.33em; margin-bottom: 0">
-                    Please get in touch if you feel you have a project that might suit me; I'm open to interesting projects in any field!
-                </p>
+                <h5></h5>
+                <ul>
+                    <li>Fullstack Web Development</li>
+                    <li>Real-time Broadcast Graphics</li>
+                    <li></li>
+                </ul>
             </div>
         </div>
     </Tile>
@@ -28,107 +32,137 @@
         <h1>Projects</h1>
         <div class="projects">
             <el-collapse v-model="activeProjectName" accordion>
-                <el-collapse-item>
+                <el-collapse-item class="project">
                     <template #title>
-                        <h2 class="project-name">FACEEAT</h2>
+                        <div class="title">
+                            <h2 class="name">FACEEAT</h2>
+                            <div class="tags">
+                                <el-tag type="success" effect="dark" size="mini">Fullstack Web</el-tag>
+                            </div>
+                        </div>
                     </template>
-                    <div class="tags">
-                        <el-tag type="success" effect="dark" size="mini">Fullstack Web</el-tag>
+                    <div class="content">
+                        <div class="description">
+                            <p>A fullstack web-app for facilitiating COVID-safe catering at FACEIT events, some of which hosting over 200 guests.</p>
+                            <p>Features include personalised orders, meal-time notifications, menu translations and integration with existing kitchen infrastructure.</p>
+                            <p>Tech stack: Node.js, Vue and MongoDB.</p>
+                        </div>
                     </div>
-                    <p>A fullstack web-app for facilitiating COVID-safe catering at FACEIT events, some of which hosting over 200 guests.</p>
-                    <p>Features include personalised orders, meal-time notifications, menu translations and integration with existing kitchen infrastructure.</p>
-                    <p>Tech stack: Node.js, Vue and MongoDB.</p>
                 </el-collapse-item>
     
-                <el-collapse-item>
+                <el-collapse-item class="project">
                     <template #title>
-                        <h2 class="project-name">FACEIT CG</h2>
+                        <div class="title">
+                            <h2 class="name">FACEIT CG</h2>
+                            <div class="tags">
+                                <el-tag class="broadcast-gfx" effect="dark" size="mini">Broadcast Graphics</el-tag>
+                                <el-tag type="success" effect="dark" size="mini">Fullstack Web</el-tag>
+                                <el-tag type="danger" effect="dark" size="mini">Native</el-tag>
+                            </div>
+                        </div>
                     </template>
-                    <div class="tags">
-                        <el-tag type="success" effect="dark" size="mini">Fullstack Web</el-tag>
-                        <el-tag type="danger" effect="dark" size="mini">Native</el-tag>
+                    <div class="content">
+                        <div class="description">
+                            <p>A long-term R&D project aiming to simplify FACEIT's broadcast graphics creation and operation pipeline.</p>
+                            <p>Components include an Adobe After Effects plugin, a web control panel, a web-based 2D graphics renderer, and a C# native app for playout to enterprise hardware.</p>
+                        </div>
                     </div>
-                    <p>A long-term R&D project aiming to simplify FACEIT's broadcast graphics creation and operation pipeline.</p>
-                    <p>Components include an Adobe After Effects plugin, a web control panel, a web-based 2D graphics renderer, and a C# native app for playout to enterprise hardware.</p>
                 </el-collapse-item>
     
-                <el-collapse-item>
+                <el-collapse-item class="project">
                     <template #title>
-                        <h2 class="project-name">Virtual Broadcast Studio</h2>
+                        <div class="title">
+                            <h2 class="name">Siege EUL Final: Virtual Broadcast Studio</h2>
+                            <div class="tags">
+                                <el-tag class="broadcast-gfx" effect="dark" size="mini">Broadcast Graphics</el-tag>
+                                <el-tag class="purple" effect="dark" size="mini">UE4/Unity</el-tag>
+                                <el-tag type="danger" effect="dark" size="mini">Native</el-tag>
+                            </div>
+                        </div>
                     </template>
-                    <div class="tags">
-                        <el-tag class="purple" effect="dark" size="mini">UE4/Unity</el-tag>
-                        <el-tag type="danger" effect="dark" size="mini">Native</el-tag>
+                    <div class="content">
+                        <div class="description">
+                            <p>With remote production becoming a large part of esports recently, FACEIT were looking to add flair to their  </p>
+                        </div>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 </el-collapse-item>
                 
-                <el-collapse-item>
+                <el-collapse-item class="project">
                     <template #title>
-                        <h2 class="project-name">NodeCG Packages</h2>
+                        <div class="title">
+                            <h2 class="name">NodeCG Packages</h2>
+                            <div class="tags">
+                                <el-tag class="broadcast-gfx" effect="dark" size="mini">Broadcast Graphics</el-tag>
+                            </div>
+                        </div>
                     </template>
-                    <div class="tags">
-                        <el-tag type="warning" effect="dark" size="mini">Frontend Web</el-tag>
+                    <div class="content">
+                        <div class="description">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </div>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 </el-collapse-item>
     
-                <el-collapse-item>
+                <el-collapse-item class="project">
                     <template #title>
-                        <h2 class="project-name">League of Legends OCR HUD</h2>
+                        <div class="title">
+                            <h2 class="name">League of Legends OCR HUD</h2>
+                            <div class="tags">
+                                <el-tag class="opensource" effect="dark" size="mini">Open Source</el-tag>
+                                <el-tag type="danger" effect="dark" size="mini">Native</el-tag>
+                            </div>
+                        </div>
                     </template>
-                    <div class="tags">
-                        <el-tag effect="dark" size="mini">Open Source</el-tag>
-                        <el-tag type="danger" effect="dark" size="mini">Native</el-tag>
-                    </div>
-                    <p>A Node.js program for scraping gamestate data from a League of Legends game feed, allowing creation of custom HUDs.</p>
-                    <div class="repos">
-                        <div data="https://github.com/dan-shields/League-OCR-HUD" class="github-pinner" style="visibility: hidden;"></div>
+                    <div class="content">
+                        <div class="description">
+                            <p>A Node.js program for scraping gamestate data from a League of Legends game feed, allowing creation of custom broadcast HUDs.</p>
+                        </div>
+                        <div class="repos">
+                            <div data="https://github.com/dan-shields/League-OCR-HUD" class="github-pinner" style="visibility: hidden;"></div>
+                        </div>
                     </div>
                 </el-collapse-item>
 
-                <el-collapse-item>
+                <el-collapse-item class="project">
                     <template #title>
-                        <h2 class="project-name">DOTA 2 Cam Syncer</h2>
+                        <div class="title">
+                            <h2 class="name">DREAM JAM 2021: Taking Inspiration</h2>
+                            <div class="tags">
+                                <el-tag class="opensource" effect="dark" size="mini">Open Source</el-tag>
+                                <el-tag class="purple" effect="dark" size="mini">UE4/Unity</el-tag>
+                                <el-tag type="danger" effect="dark" size="mini">Native</el-tag>
+                            </div>
+                        </div>
                     </template>
-                    <div class="tags">
-                        <el-tag effect="dark" size="mini">Open Source</el-tag>
-                        <el-tag type="danger" effect="dark" size="mini">Native</el-tag>
-                    </div>
-                    <p>In collaboration with Jakub Szmyt, I developed two Node.js programs for </p>
-                    <div class="repos">
-                        <div data="https://github.com/dan-shields/dota-cams" class="github-pinner" style="visibility: hidden;"></div>
+                    <div class="content">
+                        <div class="description">
+                            <p>A 2D Stealth Game made in 2 weeks for DREAM JAM 2021 where you infiltrate someone's dream in order to steal an idea they're keeping secret!</p>
+                        </div>
+                        <div class="repos">
+                            <div data="https://github.com/dan-shields/Taking-Inspiration" class="github-pinner" style="visibility: hidden;"></div>
+                        </div>
                     </div>
                 </el-collapse-item>
 
-                <el-collapse-item>
+                <el-collapse-item class="project">
                     <template #title>
-                        <h2 class="project-name">DREAM JAM 2021: Taking Inspiration</h2>
+                        <div class="title">
+                            <h2 class="name">UoM Esports: HiveAid & King of the North</h2>
+                            <div class="tags">
+                                <el-tag class="opensource" effect="dark" size="mini">Open Source</el-tag>
+                                <el-tag type="success" effect="dark" size="mini">Fullstack Web</el-tag>
+                            </div>
+                        </div>
                     </template>
-                    <div class="tags">
-                        <el-tag class="purple" effect="dark" size="mini">UE4/Unity</el-tag>
-                        <el-tag effect="dark" size="mini">Open Source</el-tag>
-                        <el-tag type="danger" effect="dark" size="mini">Native</el-tag>
-                    </div>
-                    <p>In collaboration with Jakub Szmyt, I developed two Node.js programs for </p>
-                    <div class="repos">
-                        <div data="https://github.com/dan-shields/Taking-Inspiration" class="github-pinner" style="visibility: hidden;"></div>
-                    </div>
-                </el-collapse-item>
-
-                <el-collapse-item>
-                    <template #title>
-                        <h2 class="project-name">UoM Esports: HiveAid & King of the North</h2>
-                    </template>
-                    <div class="tags">
-                        <el-tag effect="dark" size="mini">Open Source</el-tag>
-                        <el-tag type="success" effect="dark" size="mini">Fullstack Web</el-tag>
-                    </div>
-                    <p>In collaboration with Jakub Szmyt, I developed two Node.js programs for </p>
-                    <div class="repos">
-                        <div data="https://github.com/UoMEsports/UoM-Website" class="github-pinner" style="visibility: hidden;"></div>
-                        <div data="https://github.com/UoMEsports/HiveAid-Donation-Tracker" class="github-pinner" style="visibility: hidden;"></div>
-                        <div data="https://github.com/UoMEsports/KotN-VI-Website" class="github-pinner" style="visibility: hidden;"></div>
+                    <div class="content">
+                        <div class="description">
+                            <p></p>
+                        </div>
+                        <div class="repos">
+                            <div data="https://github.com/UoMEsports/UoM-Website" class="github-pinner" style="visibility: hidden;"></div>
+                            <div data="https://github.com/UoMEsports/HiveAid-Donation-Tracker" class="github-pinner" style="visibility: hidden;"></div>
+                            <div data="https://github.com/UoMEsports/KotN-VI-Website" class="github-pinner" style="visibility: hidden;"></div>
+                        </div>
                     </div>
                 </el-collapse-item>
             </el-collapse>
@@ -179,21 +213,19 @@ $margin: min(30px, 3vw);
 .projects-container {
     border-radius: 10px;
     width: calc(100% - #{$margin});
-    margin: 0 calc(#{$margin} / 2);
+    margin: $margin calc(#{$margin} / 2);
     height: 100%;
 
     background-color: rgb(248, 248, 248);
 
     padding: 0;
 
-    margin-bottom: 50px;
-
     opacity: 0;
 
     > h1 {
         padding: 10px;
         padding-top: 15px;
-        background-color: rgb(231, 171, 80);
+        background-color: rgb(243, 167, 53);
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
         margin-bottom: 0px;
@@ -204,47 +236,91 @@ $margin: min(30px, 3vw);
     .projects {
         padding: 0 2px;
 
-        .project-name {
-            margin-left: 15px;
-            overflow: hidden;
-            white-space: nowrap;
-        }
+        .project {
 
-        p {
-            text-align: left;
-            margin: 5px 20px;
-        }
+            .title {
+                margin: 0;
 
-        .tags {
-            margin-left: 15px;
-            text-align: left;
-            > * {
-                margin-left: 5px;
+                text-align: left;
+
+                .name {
+                    margin: 0;
+                    margin-left: 15px;
+                    margin-bottom: 3px;
+                    margin-top: -10px;
+                    line-height: 0px;
+                    white-space: nowrap;
+                }
+
+                .tags {    
+                    height: 20px;
+                    margin-left: 11px;
+                    margin-top: -15px;
+                    
+                    > * {
+                        margin-left: 5px;
+                    }
+        
+                    .purple {
+                        $color: rgb(173, 24, 173);
+                        background-color: $color;
+                        border-color: $color;
+                    }
+
+                    .broadcast-gfx {
+                        $color: rgb(5, 224, 195);
+                        background-color: $color;
+                        border-color: $color;
+                    }
+        
+                    .opensource {
+                        $color: rgb(0, 110, 255);
+                        background-color: $color;
+                        border-color: $color;
+                    }
+        
+                    .white {
+                        background-color: white;
+                        border-color: rgb(199, 199, 199);
+                        color: black;
+                    }
+                }
             }
 
-            .purple {
-                $color: rgb(173, 24, 173);
-                background-color: $color;
-                border-color: $color;
-            }
+            .content {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+                gap: 5px;
+                width: calc(100% - 40px);
 
-            .dark-blue {
-                $color: rgb(46, 24, 173);
-                background-color: $color;
-                border-color: $color;
-            }
+                padding: 0 20px;
 
-            .white {
-                background-color: white;
-                border-color: rgb(199, 199, 199);
-                color: black;
-            }
-        }
+                .description {
+                    flex-basis: 200px;
+                    flex-grow: 2;
 
-        .repos {
-            display: flex;
-            justify-content: center;
-            padding: 0 10px;
+                    p {
+                        text-align: left;
+                        line-height: 1.0;
+                        font-size: 1.1em;
+                    }
+                }
+
+                .repos {
+                    display: flex;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    padding: 10px 0;
+                    max-width: 100%;
+
+                    > * {
+                        min-width: 170px;
+                        flex-grow: 1;
+                        flex-basis: 150px;
+                    }
+                }
+            }
         }
     }
 }
@@ -260,11 +336,26 @@ el-collapse-item {
     width: 100%;
     justify-content: space-around;
     text-align: left;
+
+    max-height: 60%;
+}
+
+.header-tile {
+    position: relative;
+
+    .header-title {
+        position: absolute;
+        top: 25px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+    }
 }
 
 * {
     --el-collapse-header-background-color: rgb(248, 248, 248);
     --el-collapse-content-font-size: 15px;
+    --el-collapse-header-height: 72px;
 }
 
 </style>

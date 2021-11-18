@@ -270,7 +270,7 @@ $margin: min(30px, 3vw);
   justify-content: space-between;
   margin: calc(#{$margin} / 2);
   margin-bottom: 0;
-  margin-top: $margin;
+  //margin-top: $margin;
 
   opacity: 1;
 
