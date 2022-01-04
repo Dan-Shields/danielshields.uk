@@ -105,10 +105,10 @@
     "watchers": 0,
     "default_branch": "uom",
     "permissions": {
-      "admin": false,
-      "maintain": false,
-      "push": false,
-      "triage": false,
+      "admin": true,
+      "maintain": true,
+      "push": true,
+      "triage": true,
       "pull": true
     }
   },
@@ -223,10 +223,10 @@
     "watchers": 4,
     "default_branch": "master",
     "permissions": {
-      "admin": false,
-      "maintain": false,
-      "push": false,
-      "triage": false,
+      "admin": true,
+      "maintain": true,
+      "push": true,
+      "triage": true,
       "pull": true
     }
   },
@@ -338,10 +338,10 @@
     "watchers": 2,
     "default_branch": "master",
     "permissions": {
-      "admin": false,
-      "maintain": false,
-      "push": false,
-      "triage": false,
+      "admin": true,
+      "maintain": true,
+      "push": true,
+      "triage": true,
       "pull": true
     }
   },
@@ -455,10 +455,10 @@
     "watchers": 1,
     "default_branch": "master",
     "permissions": {
-      "admin": false,
-      "maintain": false,
-      "push": false,
-      "triage": false,
+      "admin": true,
+      "maintain": true,
+      "push": true,
+      "triage": true,
       "pull": true
     }
   },
@@ -568,10 +568,10 @@
     "watchers": 0,
     "default_branch": "master",
     "permissions": {
-      "admin": false,
-      "maintain": false,
-      "push": false,
-      "triage": false,
+      "admin": true,
+      "maintain": true,
+      "push": true,
+      "triage": true,
       "pull": true
     }
   },
@@ -688,10 +688,10 @@
     "watchers": 2,
     "default_branch": "master",
     "permissions": {
-      "admin": false,
-      "maintain": false,
-      "push": false,
-      "triage": false,
+      "admin": true,
+      "maintain": true,
+      "push": true,
+      "triage": true,
       "pull": true
     }
   },
@@ -804,10 +804,10 @@
     "watchers": 0,
     "default_branch": "master",
     "permissions": {
-      "admin": false,
-      "maintain": false,
-      "push": false,
-      "triage": false,
+      "admin": true,
+      "maintain": true,
+      "push": true,
+      "triage": true,
       "pull": true
     }
   },
@@ -911,10 +911,10 @@
     "watchers": 1,
     "default_branch": "master",
     "permissions": {
-      "admin": false,
-      "maintain": false,
-      "push": false,
-      "triage": false,
+      "admin": true,
+      "maintain": true,
+      "push": true,
+      "triage": true,
       "pull": true
     }
   },
@@ -1018,10 +1018,10 @@
     "watchers": 0,
     "default_branch": "master",
     "permissions": {
-      "admin": false,
-      "maintain": false,
-      "push": false,
-      "triage": false,
+      "admin": true,
+      "maintain": true,
+      "push": true,
+      "triage": true,
       "pull": true
     }
   },
@@ -1125,10 +1125,10 @@
     "watchers": 0,
     "default_branch": "master",
     "permissions": {
-      "admin": false,
-      "maintain": false,
-      "push": false,
-      "triage": false,
+      "admin": true,
+      "maintain": true,
+      "push": true,
+      "triage": true,
       "pull": true
     }
   },
@@ -1232,10 +1232,10 @@
     "watchers": 0,
     "default_branch": "master",
     "permissions": {
-      "admin": false,
-      "maintain": false,
-      "push": false,
-      "triage": false,
+      "admin": true,
+      "maintain": true,
+      "push": true,
+      "triage": true,
       "pull": true
     }
   },
@@ -1345,10 +1345,10 @@
     "watchers": 0,
     "default_branch": "master",
     "permissions": {
-      "admin": false,
-      "maintain": false,
-      "push": false,
-      "triage": false,
+      "admin": true,
+      "maintain": true,
+      "push": true,
+      "triage": true,
       "pull": true
     }
   },
@@ -1452,10 +1452,10 @@
     "watchers": 1,
     "default_branch": "master",
     "permissions": {
-      "admin": false,
-      "maintain": false,
-      "push": false,
-      "triage": false,
+      "admin": true,
+      "maintain": true,
+      "push": true,
+      "triage": true,
       "pull": true
     }
   },
@@ -1559,10 +1559,10 @@
     "watchers": 0,
     "default_branch": "master",
     "permissions": {
-      "admin": false,
-      "maintain": false,
-      "push": false,
-      "triage": false,
+      "admin": true,
+      "maintain": true,
+      "push": true,
+      "triage": true,
       "pull": true
     }
   }
