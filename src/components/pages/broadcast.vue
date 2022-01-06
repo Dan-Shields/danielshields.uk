@@ -6,25 +6,51 @@
         :index="0"
         :interactive="false"
         class="animate-in header-tile"
-        style="color: white"
+        style="color: white; height: auto; max-height: unset;"
     >
         <template #title>
-            <span class="header-title"><u>Status:</u> Open to new clients</span>
+            <span style="font-weight: 300; font-size: 0.8em">Status:</span>
+            <br>
+            <span style="color: rgb(52, 255, 52);">Open to new clients</span>
         </template>
         <div class="header">
-            <div style="flex-basis: 1; width: 40%">
-                <p style="font-size: 1.33em; margin-bottom: 0">
-                    If you're looking for an experienced broadcast graphics operator or technical broadcast producer, please don't hestitate to get in touch.
-                </p>
-            </div>
-
-            <div style="flex-basis: 1; width: 40%">
-                <h5>Familiar Technologies</h5>
-                <ul>
-                    <li>Xpression</li>
-                    <li>CasparCG</li>
-                    <li>OBS/VMix</li>
-                </ul>
+            <p>
+                If you're looking for an experienced broadcast graphics operator or technical broadcast producer, please don't hestitate to get in touch!
+            </p>
+            <div class="familiar-tech">
+                <h5 style="text-align: center;">Familiar Technologies</h5>
+                <div class="tech-logos">
+                    <div>
+                        <div class="img-container">
+                            <img :src="techLogos.bmd">
+                        </div>
+                        <h5>Blackmagic Hardware</h5>
+                    </div>
+                    <div>
+                        <div class="img-container">
+                            <img :src="techLogos.casparcg">
+                        </div>
+                        <h5>CasparCG</h5>
+                    </div>
+                    <div>
+                        <div class="img-container">
+                            <img :src="techLogos.xpression">
+                        </div>
+                        <h5>Ross XPression</h5>
+                    </div>
+                    <div>
+                        <div class="img-container">
+                            <img :src="techLogos.obs">
+                        </div>
+                        <h5>OBS Studio</h5>
+                    </div>
+                    <div>
+                        <div class="img-container">
+                            <img :src="techLogos.vmix">
+                        </div>
+                        <h5>vMix</h5>
+                    </div>
+                </div>
             </div>
         </div>
     </Tile>
@@ -40,6 +66,12 @@
                 <div class="cell"><h4><u>Organiser</u></h4></div>
                 <div class="cell"><h4><u>Location</u></h4></div>
     
+                <div class="cell"><p>Saudi Arabia Race Watchalong</p></div>
+                <div class="cell"><p>Technical Producer</p></div>
+                <div class="cell"><p>Dec 1st → 5th 2021</p></div>
+                <div class="cell"><p>McLaren Shadow</p></div>
+                <div class="cell"><p>Remote</p></div>
+
                 <div class="cell"><p>Stream for Mind</p></div>
                 <div class="cell"><p>Technical Producer</p></div>
                 <div class="cell"><p>Oct 27th → 28th 2021</p></div>
@@ -157,6 +189,8 @@
 import anime from 'animejs'
 import { defineComponent, onMounted } from 'vue'
 
+import techLogos from '../../assets/tech-logos'
+
 import Tile from '../Tile.vue'
 
 export default defineComponent({
@@ -164,7 +198,7 @@ export default defineComponent({
         Tile
     },
     setup () {
-        onMounted(() => {
+        onMounted( () => {
             anime({
                 targets: '.experience',
                 translateY: [200, 0],
@@ -175,7 +209,7 @@ export default defineComponent({
             })
         })
 
-        return {}
+        return {techLogos}
     }
 })
 </script>
@@ -256,25 +290,63 @@ $margin: min(30px, 3vw);
     }
 }
 
-
-.header-tile {
-    position: relative;
-
-    .header-title {
-        position: absolute;
-        top: 25px;
-        left: 0;
-        width: 100%;
-        text-align: center;
-    }
-}
-
 .header {
-    display: flex;
-    flex-wrap: wrap;
     width: 100%;
-    justify-content: space-around;
+    font-size: 1.33em;
     text-align: left;
-    max-height: 60%;
+    padding: 0 20px;
+    box-sizing: border-box;
+
+    > p {
+        margin-top: 0;
+    }
+
+    .familiar-tech {
+        background: #2f83fa;
+        border-radius: 5px;
+        padding: 15px;
+
+        margin-bottom: 20px;
+
+        h5 {
+            margin-top: 0;
+        }
+
+        .tech-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-content: space-between;
+            margin-bottom: 20px;
+            row-gap: 20px;
+        
+            > * {
+                width: 125px;
+                height: 125px;
+    
+                h5 {
+                    text-align: center;
+                    margin-top: 10px;
+                }
+    
+                .img-container {
+                    height: 75%;
+                    width: 100%;
+                    position: relative;
+    
+                    img {
+                        max-height: 100%;
+                        max-width: 100%;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+    
+                }
+            }
+        }
+    }
+
 }
 </style>

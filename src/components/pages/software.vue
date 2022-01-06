@@ -1,4 +1,3 @@
-
 <template>
     <Tile
         width="100%"
@@ -6,26 +5,35 @@
         :index="0"
         :interactive="false"
         class="animate-in header-tile"
-        style="color: white"
+        style="color: white; height: auto; max-height: unset;"
     >
         <template #title>
-            <span class="header-title"><span style="font-weight: 300; font-size: 0.8em">Status:</span><br>Open to new clients</span>
+            <span style="font-weight: 300; font-size: 0.8em">Status:</span>
+            <br>
+            <span style="color: rgb(21, 172, 21);">Open to new clients</span>
         </template>
         <div class="header">
-            <div style="flex-basis: 1; width: 40%">
-                <p style="font-size: 1.33em; margin-bottom: 0">
-                    
-                </p>
-            </div>
+            <p>I'm looking to take on more clients needing any of the following solutions.</p>
+            <p>If you have a project that might suit my experience please don't hestitate to get in touch!</p>
 
-            <div style="flex-basis: 1; width: 40%">
-                <h5></h5>
-                <ul>
-                    <li>Fullstack Web Development</li>
-                    <li>Real-time Broadcast Graphics</li>
-                    <li></li>
-                </ul>
+            <div class="project-types">
+                <div>
+                    <h3>Custom broadcast graphics packages</h3>
+                    <p>I can take broadcasts of any size to the next level with fully custom control panels and hand animated graphics.</p>
+                    <p>Making use of NodeCG and custom-made libraries, whatever the use-case I can deliver a platform that makes dealing with broadcast graphics easy.</p>
+                </div>
+                <div>
+                    <h3>Full-stack web development</h3>
+                    <p>Using a modern tech-stack I can design and create performant, functional and beautiful websites.</p>
+                    <p>Whether you need an ecommerce ship, an internal infrastructure site or a blog, reach out to discuss how I can get your project off the ground.</p>
+                </div>
+                <div>
+                    <h3>AR/virtual studio solutions</h3>
+                    <p>Looking to add flair to your esports broadcast? Consider adding a virtual studio to your remote production workflow, or AR elements to supplement your physical studio.</p>
+                    <p>Reach out to discuss possibilities.</p>
+                </div>
             </div>
+            <p></p>
         </div>
     </Tile>
     <div class="projects-container">
@@ -64,41 +72,36 @@
                     <div class="content">
                         <div class="description">
                             <p>A long-term R&D project aiming to simplify FACEIT's broadcast graphics creation and operation pipeline.</p>
-                            <p>Components include an Adobe After Effects plugin, a web control panel, a web-based 2D graphics renderer, and a C# native app for playout to enterprise hardware.</p>
+                            <p>Components developed include an Adobe After Effects plugin, a web control panel, a web-based 2D graphics renderer, and a C# native app for final playout to enterprise hardware.</p>
                         </div>
                     </div>
                 </el-collapse-item>
-    
+
                 <el-collapse-item class="project">
                     <template #title>
                         <div class="title">
-                            <h2 class="name">Siege EUL Final: Virtual Broadcast Studio</h2>
+                            <h2 class="name">Siege EUL Finals: Virtual Broadcast Studio</h2>
                             <div class="tags">
                                 <el-tag class="broadcast-gfx" effect="dark" size="mini">Broadcast Graphics</el-tag>
                                 <el-tag class="purple" effect="dark" size="mini">UE4/Unity</el-tag>
-                                <el-tag type="danger" effect="dark" size="mini">Native</el-tag>
                             </div>
                         </div>
                     </template>
                     <div class="content">
                         <div class="description">
-                            <p>With remote production becoming a large part of esports recently, FACEIT were looking to add flair to their  </p>
+                            <p>With remote production becoming a large part of esports recently, FACEIT were looking to add flair to their package for the R6 Siege EUL Finals in early 2021.</p>
+                            <p>Made in Unreal Engine 4 in just 4 days, the project was operated remotely, pulling feeds from 5 remote talent members and offering animated transitions between each scene.</p>
                         </div>
-                    </div>
-                </el-collapse-item>
-                
-                <el-collapse-item class="project">
-                    <template #title>
-                        <div class="title">
-                            <h2 class="name">NodeCG Packages</h2>
-                            <div class="tags">
-                                <el-tag class="broadcast-gfx" effect="dark" size="mini">Broadcast Graphics</el-tag>
-                            </div>
-                        </div>
-                    </template>
-                    <div class="content">
-                        <div class="description">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <div class="videos">
+                            <iframe
+                                src="https://clips.twitch.tv/embed?clip=SmokySincereOrcaGivePLZ&parent=localhost&controls=false&muted=true"
+                                frameborder="0"
+                                allowfullscreen="false"
+                                scrolling="no"
+                                width="640"
+                                height="360"
+                                loading="lazy"
+                            ></iframe>
                         </div>
                     </div>
                 </el-collapse-item>
@@ -116,6 +119,7 @@
                     <div class="content">
                         <div class="description">
                             <p>A Node.js program for scraping gamestate data from a League of Legends game feed, allowing creation of custom broadcast HUDs.</p>
+                            <p>Makes use of Google's Cloud Vision API to get the data that is unavailable to small tournament organisers.</p>
                         </div>
                         <div class="repos">
                             <div data="https://github.com/dan-shields/League-OCR-HUD" class="github-pinner" style="visibility: hidden;"></div>
@@ -130,16 +134,24 @@
                             <div class="tags">
                                 <el-tag class="opensource" effect="dark" size="mini">Open Source</el-tag>
                                 <el-tag class="purple" effect="dark" size="mini">UE4/Unity</el-tag>
-                                <el-tag type="danger" effect="dark" size="mini">Native</el-tag>
                             </div>
                         </div>
                     </template>
                     <div class="content">
                         <div class="description">
-                            <p>A 2D Stealth Game made in 2 weeks for DREAM JAM 2021 where you infiltrate someone's dream in order to steal an idea they're keeping secret!</p>
+                            <p>A 2D stealth game made with Unity in 2 weeks for DREAM JAM 2021 where you infiltrate someone's dream in order to steal an idea they're keeping secret!</p>
                         </div>
                         <div class="repos">
                             <div data="https://github.com/dan-shields/Taking-Inspiration" class="github-pinner" style="visibility: hidden;"></div>
+                            <iframe
+                                frameborder="0"
+                                src="https://itch.io/embed/1269379"
+                                width="208"
+                                height="167"
+                                loading="lazy"
+                            >
+                                <a href="https://daanbread.itch.io/taking-inspiration">Taking Inspiration by DaanBread</a>
+                            </iframe>
                         </div>
                     </div>
                 </el-collapse-item>
@@ -156,12 +168,13 @@
                     </template>
                     <div class="content">
                         <div class="description">
-                            <p></p>
+                            <p>As Tech Officer at the University of Manchester Esports Society, I developed and maintained a series of (admittedly over-engineered) websites for the various events we ran.</p>
+                            <p>These included a tournament registration site, a charity-stream donation tracker, and an elegant landing page for the society.</p>
                         </div>
                         <div class="repos">
-                            <div data="https://github.com/UoMEsports/UoM-Website" class="github-pinner" style="visibility: hidden;"></div>
-                            <div data="https://github.com/UoMEsports/HiveAid-Donation-Tracker" class="github-pinner" style="visibility: hidden;"></div>
-                            <div data="https://github.com/UoMEsports/KotN-VI-Website" class="github-pinner" style="visibility: hidden;"></div>
+                            <div data="https://github.com/uomesports/UoM-Website" class="github-pinner" style="visibility: hidden;"></div>
+                            <div data="https://github.com/uomesports/HiveAid-Donation-Tracker" class="github-pinner" style="visibility: hidden;"></div>
+                            <div data="https://github.com/uomesports/KotN-VI-Website" class="github-pinner" style="visibility: hidden;"></div>
                         </div>
                     </div>
                 </el-collapse-item>
@@ -186,7 +199,7 @@ export default defineComponent({
         ElTag
     },
     setup () {
-        onMounted(() => {
+        onMounted( () => {
             anime({
                 targets: '.projects-container',
                 translateY: [200, 0],
@@ -268,7 +281,7 @@ $margin: min(30px, 3vw);
                     }
 
                     .broadcast-gfx {
-                        $color: rgb(5, 224, 195);
+                        $color: rgb(17, 204, 179);
                         background-color: $color;
                         border-color: $color;
                     }
@@ -332,23 +345,23 @@ el-collapse-item {
 }
 
 .header {
-    display: flex;
     width: 100%;
-    justify-content: space-around;
+    font-size: 1.33em;
     text-align: left;
+    padding: 0 20px;
+    box-sizing: border-box;
 
-    max-height: 60%;
-}
+    > p {
+        margin-top: 0;
+    }
 
-.header-tile {
-    position: relative;
-
-    .header-title {
-        position: absolute;
-        top: 25px;
-        left: 0;
-        width: 100%;
-        text-align: center;
+    .project-types {
+        > div {
+            background: #e4890a;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
     }
 }
 
@@ -358,10 +371,24 @@ el-collapse-item {
     --el-collapse-header-height: 72px;
 }
 
+@media only screen and (max-width: 470px) {
+  .project .title .name {
+    font-size: 1.25em;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .project .title .name {
+    font-size: 1.1em;
+  }
+}
+
 </style>
 
 <style>
 .el-collapse-item__content {
     padding-bottom: 5px;
+}
+.el-collapse-item__arrow {
+    --font-size: 24px;
 }
 </style>

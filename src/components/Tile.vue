@@ -5,17 +5,13 @@
 
         :style="widthStyle"
 
-        :class="{ selected }"
-
         :href="link ?? undefined"
         :target="link ? '_blank' : undefined"
-
-        @click="select"
     >
         <div
             ref="box"
             class="box"
-            :style="backgroundStyle"
+            :style="boxStyle"
 
             @mouseover="updateHover(true)"
             @mouseout="updateHover(false)"
@@ -27,7 +23,7 @@
             >
 
             <h1
-                v-else-if="!fullImage"
+                v-else-if="!fullImage && !hideTitle"
                 class="title"
                 :class="{ interactive }"
             >
@@ -83,21 +79,9 @@ export default defineComponent({
             type: String,
             default: '100%'
         },
-        index: {
-            type: Number,
-            default: -1
-        },
-        pageIndex: {
-            type: Number,
-            default: -1
-        },
         link: {
             type: String,
             default: null
-        },
-        pageName: {
-            type: String,
-            default: ''
         },
         imageUrl: {
             type: String,
@@ -110,15 +94,22 @@ export default defineComponent({
         interactive: {
             type: Boolean,
             default: true
+        },
+        hideTitle: {
+            type: Boolean,
+            default: false
+        },
+        borderColor: {
+            type: String,
+            default: ''
         }
     },
 
-    emits: ['selected'],
-
     setup(props, {emit}) {
-        let backgroundStyle = ref({
+        let boxStyle = ref({
             background: props.fullImage && props.imageUrl ? `url("${props.imageUrl}") center/cover no-repeat` : 'linear-gradient(to bottom right, ' + props.color + ', ' + lightenDarkenColor(props.color, 50) + ')',
-            cursor: props.interactive ? 'pointer' : 'unset'
+            cursor: props.interactive ? 'pointer' : 'unset',
+            border: props.borderColor ? `1px solid ${props.borderColor}` : ''
         })
     
         let widthStyle = ref({
@@ -126,11 +117,10 @@ export default defineComponent({
         })
 
         const tile = ref<HTMLElement | null>(null)
-        const selected = ref(false)
         const hover = ref(false)
 
         const updateHover = function (value: boolean) {
-            if (!window.isTouchEnabled && !selected.value) {
+            if (!window.isTouchEnabled) {
                 hover.value = value
             }
         }
@@ -138,7 +128,7 @@ export default defineComponent({
         const box = ref<HTMLElement | null>(null)
 
         watch(hover, newHover => {
-            if (selected.value || !props.interactive)
+            if (!props.interactive)
                 return
 
             anime({
@@ -149,55 +139,12 @@ export default defineComponent({
             })
         })
 
-        const select = function () {
-            if (!props.interactive || props.link || selected.value) return
-
-            selected.value = true
-
-            anime.remove(box.value)
-            anime.set(box.value, {
-                opacity: 1,
-                scale: window.isTouchEnabled ? 1 : 1.1
-            })
-
-            anime({
-                targets: box.value,
-                scale: 6,
-                duration: 600,
-                easing: 'easeInExpo',
-                complete: () => {
-                    emit('selected', props.pageIndex, props.index)
-                }
-            })
-        }
-
-        const back = function () {
-            if (!selected.value)
-                return
-
-            anime.remove(box.value)
-
-            anime({
-                targets: box.value,
-                scale: 1,
-                duration: 600,
-                easing: 'easeInOutExpo',
-                complete: () => {
-                    hover.value = false
-                    selected.value = false
-                }
-            })
-        }
-
         return {
             tile,
             box,
-            backgroundStyle,
+            boxStyle,
             widthStyle,
-            selected,
-            updateHover,
-            select,
-            back
+            updateHover
         }
     }
 })
@@ -210,17 +157,16 @@ $margin: min(30px, 3vw);
 .tile {
   max-width: 100%;
   height: $height;
-  max-height: 50vw;
+  max-height: 40vw;
   opacity: 0;
+  transform: scale(0);
 
   margin-top: $margin;
 
   .box {
-    position: absolute;
-
-    height: 100%;
     width: calc(100% - #{$margin});
     border-radius: 10px;
+    height: 100%;
 
     margin: 0 calc(#{$margin} / 2);
 
@@ -238,7 +184,7 @@ $margin: min(30px, 3vw);
     .title {
       color: white;
       vertical-align: middle;
-      margin: 0;
+      margin: 15px 0;
       user-select: none;
       
       padding: 5px;
@@ -250,6 +196,7 @@ $margin: min(30px, 3vw);
     .image {
       max-width: 80%;
       max-height: 80%;
+      height: 325px;
       margin: auto;
 
       user-select: none;

@@ -58,7 +58,7 @@ export default defineComponent({
         const titleDiv = ref(null)
         const navbar = ref(null)
 
-        onMounted(() => {
+        onMounted( () => {
             anime({
                 targets: [titleDiv.value, navbar.value],
                 opacity: {
@@ -101,7 +101,9 @@ $height: 100px;
   .title {
     margin: 0;
     margin-top: 25px;
-    font-size: 42px; 
+    font-size: 42px;
+    
+    opacity: 0;
   }
 
 
@@ -116,6 +118,8 @@ $height: 100px;
     justify-content: space-between;
     align-items: center;
 
+    transform: scale(0);
+
     > * {
       flex-basis: 33%;
     }
@@ -126,6 +130,7 @@ $height: 100px;
 
       color: #748291;
       text-decoration: underline;
+      margin: 10px 0;
       
       &.active, &:hover {
         color: darken(#2c3e50, 10%);
@@ -136,6 +141,11 @@ $height: 100px;
 @media only screen and (max-width: 500px) {
   .navbar h1 {
     font-size: 1.5em;
+  }
+}
+@media only screen and (max-width: 375px) {
+  .navbar h1 {
+    font-size: 1.3em;
   }
 }
 </style>

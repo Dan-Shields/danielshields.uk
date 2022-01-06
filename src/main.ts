@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 
-import './assets/GitHubPinner.js'
+import './GitHubPinner.ts'
 import './assets/GitHubPinner.css'
 
 import App from './App.vue'

@@ -23,16 +23,34 @@
                     left: index == 0
                 }"
             >
-                <template v-if="page.tiled && page.tiles !== undefined">
+                <template v-if="index === 1">
+                    <Tile
+                        width="100%"
+                        :color="'#f8f8f8'"
+                        :index="0"
+                        :interactive="false"
+                        class="animate-in header-tile"
+                        :hideTitle="true"
+                        :border-color="'#f0f0f0'"
+                        style="height: auto; max-height: unset;"
+                    >
+                        <div class="about-tile">
+                            <div class="about-me">
+                                <p>Hi! I'm Dan, I'm a software developer, broadcast operator, sailor and pilot.</p>
+                                <p>Feel free to reach out if you're interested in working together, need help with a project or just want a chat!</p>
+                                <p>Check out the adjacent pages to see more about what I do for work.</p>
+                            </div>
+                            <div class="profile-img" style="width: 200px; min-height: 200px; position: relative">
+                                <img :src="tileImages.me" style="border-radius: 50%; max-height: 100%; max-width: 100%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">
+                            </div>
+                        </div>
+                    </Tile>
                     <Tile
                         v-for="(tile, tileIndex) in page.tiles"
                         :key="tileIndex"
                         :width="tile.width"
                         :color="tile.colour"
-                        :index="tileIndex"
-                        :page-index="index"
                         :link="tile.link"
-                        :page-name="page.name"
                         :image-url="tile.image ?? ''"
                         :full-image="tile.fullImage ?? false"
                         :interactive="tile.interactive ?? true"
@@ -107,11 +125,10 @@ export default defineComponent({
                 name: 'Contact',
                 tiled: true,
                 tiles: [
-                    { name: '', title: 'Banner', image: tileImages.me, fullImage: true, width: '100%', interactive: false },
-                    { name: '', title: 'LinkedIn', image: tileImages.linkedin, colour: '#2867B2', width: '50%', link: 'https://www.linkedin.com/in/dan98/' },
+                    { name: '', title: 'Email', image: tileImages.at, colour: '#D289F8', width: '50%', link: 'mailto:hello@danielshields.uk' },
                     { name: '', title: 'GitHub', image: tileImages.github, colour: '#24292e', width: '50%', link: 'https://github.com/Dan-Shields' },
                     { name: '', title: 'Twitter', image: tileImages.twitter, colour: '#1DA1F2', width: '50%', link: 'https://twitter.com/DanShieldsUK' },
-                    { name: '', title: 'Email', image: tileImages.at, colour: '#D289F8', width: '50%', link: 'mailto:hello@danielshields.uk' }
+                    { name: '', title: 'LinkedIn', image: tileImages.linkedin, colour: '#2867B2', width: '50%', link: 'https://www.linkedin.com/in/dan98/' },
                 ],
                 selectedTile: -1
             },
@@ -180,7 +197,7 @@ export default defineComponent({
             pageDivs.value = []
         })
 
-        onMounted(() => {
+        onMounted( () => {
             switch (window.location.hash) {
                 case `#${pages[0].name.toLowerCase().replaceAll(' ', '-')}`:
                     goToPage(0, true)
@@ -233,7 +250,8 @@ export default defineComponent({
             pageDivs,
             goToPage,
             currentPage,
-            pageContents
+            pageContents,
+            tileImages
         }
     },
 
@@ -269,8 +287,8 @@ $margin: min(30px, 3vw);
   flex-wrap: wrap;
   justify-content: space-between;
   margin: calc(#{$margin} / 2);
-  margin-bottom: 0;
-  //margin-top: $margin;
+  padding-bottom: calc(#{$margin} / 2);
+  margin-top: 0;
 
   opacity: 1;
 
@@ -289,6 +307,25 @@ $margin: min(30px, 3vw);
   &.left {
     transform: rotate(120deg);
   }
+}
+
+.about-tile {
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px 30px;
+    box-sizing: border-box;
+    column-gap: 20px;
+
+    .about-me {
+        text-align: left;
+        font-size: 1.33em;
+        flex-basis: 50%;
+        min-width: 40%;
+        flex-grow: 1;
+    }
 }
 
 .fade-enter-from, .fade-leave-to {
