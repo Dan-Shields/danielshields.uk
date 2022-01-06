@@ -94,7 +94,7 @@
                         </div>
                         <div class="videos">
                             <iframe
-                                src="https://clips.twitch.tv/embed?clip=SmokySincereOrcaGivePLZ&parent=localhost&controls=false&muted=true"
+                                src="https://clips.twitch.tv/embed?clip=SmokySincereOrcaGivePLZ&parent=danielshields.uk&controls=false&muted=true"
                                 frameborder="0"
                                 allowfullscreen="false"
                                 scrolling="no"
@@ -199,7 +199,7 @@ export default defineComponent({
         ElTag
     },
     setup () {
-        onMounted( () => {
+        window.addEventListener('load',() => {
             anime({
                 targets: '.projects-container',
                 translateY: [200, 0],

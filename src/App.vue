@@ -197,7 +197,7 @@ export default defineComponent({
             pageDivs.value = []
         })
 
-        onMounted( () => {
+        onMounted(() => {
             switch (window.location.hash) {
                 case `#${pages[0].name.toLowerCase().replaceAll(' ', '-')}`:
                     goToPage(0, true)
@@ -208,36 +208,37 @@ export default defineComponent({
                     break
             }
 
-            pageDivs.value.forEach((pageDiv, index) => {
-                const elements = pageDiv.querySelectorAll('.animate-in')
-
-                if (currentPage.value === index) {
-                    // Animate all elements in
-                    anime({
-                        targets: elements,
-                        opacity: {
-                            value: [0, 1],
-                            duration: 1250,
-                            //delay: 750,
-                            easing: 'easeOutQuart'
-                        },
-                        scale: {
-                            value: [0, 1],
-                            duration: 1500,
-                            easing: 'easeOutElastic(1, 1)'
-                        },
-                        delay: anime.stagger(50, { start: 700 })
-                    })
-                } else {
-                    setTimeout(() => {
-                        elements.forEach(element => {
-                            if (!(element instanceof HTMLElement)) return
-                            element.style.opacity = '1'
-                            element.style.transform = 'scale(1)'
+            window.addEventListener('load',() => {
+                pageDivs.value.forEach((pageDiv, index) => {
+                    const elements = pageDiv.querySelectorAll('.animate-in')
+    
+                    if (currentPage.value === index) {
+                        // Animate all elements in
+                        anime({
+                            targets: elements,
+                            opacity: {
+                                value: [0, 1],
+                                duration: 1250,
+                                easing: 'easeOutQuart'
+                            },
+                            scale: {
+                                value: [0, 1],
+                                duration: 1500,
+                                easing: 'easeOutElastic(1, 1)'
+                            },
+                            delay: anime.stagger(50, { start: 700 })
                         })
-                    }, 1750)
-                }
-
+                    } else {
+                        setTimeout(() => {
+                            elements.forEach(element => {
+                                if (!(element instanceof HTMLElement)) return
+                                element.style.opacity = '1'
+                                element.style.transform = 'scale(1)'
+                            })
+                        }, 1750)
+                    }
+    
+                })
             })
         })
 

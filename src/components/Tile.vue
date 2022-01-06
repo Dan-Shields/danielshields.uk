@@ -105,7 +105,7 @@ export default defineComponent({
         }
     },
 
-    setup(props, {emit}) {
+    setup(props) {
         let boxStyle = ref({
             background: props.fullImage && props.imageUrl ? `url("${props.imageUrl}") center/cover no-repeat` : 'linear-gradient(to bottom right, ' + props.color + ', ' + lightenDarkenColor(props.color, 50) + ')',
             cursor: props.interactive ? 'pointer' : 'unset',
@@ -175,11 +175,6 @@ $margin: min(30px, 3vw);
     align-items: center;
     justify-content: center;
     cursor: pointer;
-
-    > * {
-      transition: opacity 0.25s ease-in-out;
-      opacity: 1;
-    }
 
     .title {
       color: white;

@@ -198,7 +198,7 @@ export default defineComponent({
         Tile
     },
     setup () {
-        onMounted( () => {
+        window.addEventListener('load',() => {
             anime({
                 targets: '.experience',
                 translateY: [200, 0],
@@ -338,9 +338,9 @@ $margin: min(30px, 3vw);
                         max-height: 100%;
                         max-width: 100%;
                         position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
+                        top: 0;
+                        left: 0;
+                        //transform: translate(-50%, -50%);
                     }
     
                 }

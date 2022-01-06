@@ -58,7 +58,7 @@ export default defineComponent({
         const titleDiv = ref(null)
         const navbar = ref(null)
 
-        onMounted( () => {
+        window.addEventListener('load',() => {
             anime({
                 targets: [titleDiv.value, navbar.value],
                 opacity: {
