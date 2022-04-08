@@ -36,7 +36,7 @@
                     >
                         <div class="about-tile">
                             <div class="about-me">
-                                <p>Hi! I'm Dan, I'm a software developer, broadcast operator, sailor and pilot.</p>
+                                <p>Hi! I'm Dan, I'm a software developer, broadcast operator, sailor and pilot (almost).</p>
                                 <p>Feel free to reach out if you're interested in working together, need help with a project or just want a chat!</p>
                                 <p>Check out the adjacent pages to see more about what I do for work.</p>
                             </div>
