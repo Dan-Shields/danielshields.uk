@@ -1,12 +1,12 @@
 {
-	"compilerOptions": {
-	  "target": "esnext",
-	  "module": "esnext",
-	  // this enables stricter inference for data properties on `this`
-	  "strict": true,
-	  "moduleResolution": "node",
-		"allowSyntheticDefaultImports": true,
-		"resolveJsonModule": true,
-	}
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        // this enables stricter inference for data properties on `this`
+        "strict": true,
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "resolveJsonModule": true,
+        "jsx": "preserve"
+    }
 }
-  
