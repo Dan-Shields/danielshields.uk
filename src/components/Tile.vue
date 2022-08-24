@@ -1,7 +1,7 @@
 <template>
     <a
         ref="tile"
-        class="tile animate-in"
+        class="tile"
         :href="link ?? undefined"
         :target="link ? '_blank' : undefined"
     >
@@ -14,11 +14,7 @@
         >
             <img v-if="imageUrl && !fullImage" class="image" :src="imageUrl" />
 
-            <h1
-                v-else-if="!fullImage && !hideTitle"
-                class="title"
-                :class="{ interactive }"
-            >
+            <h1 v-else-if="!hideTitle" class="title" :class="{ interactive }">
                 <slot name="title"></slot>
             </h1>
             <slot></slot>
@@ -130,8 +126,6 @@ watch(hover, (newHover) => {
 .tile {
     width: 100%;
     max-width: 100%;
-    opacity: 0;
-    transform: scale(0);
     padding: 10px;
     box-sizing: border-box;
     display: block;

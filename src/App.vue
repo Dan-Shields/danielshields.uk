@@ -10,22 +10,25 @@
             style="height: auto; max-height: unset; width: 100%"
         >
             <div class="card">
-                <div class="image">
-                    <img :src="tileImages.me" />
-                </div>
-                <div class="text">
-                    <p>
-                        Hi! I'm Dan, I'm a software developer, broadcast
-                        operator, sailor and pilot (almost).
-                    </p>
-                    <p>
-                        Feel free to reach out if you're interested in working
-                        together, need help with a project or just want a chat!
-                    </p>
-                    <p>
-                        Check out the adjacent pages to see more about what I do
-                        for work.
-                    </p>
+                <div class="row flex">
+                    <div class="image header">
+                        <img :src="tileImages.me" />
+                    </div>
+                    <div class="text">
+                        <p>
+                            Hi! I'm Dan, I'm a software developer, broadcast
+                            operator, sailor and pilot (almost).
+                        </p>
+                        <p>
+                            Feel free to reach out if you're interested in
+                            working together, need help with a project or just
+                            want a chat!
+                        </p>
+                        <p>
+                            Check out the adjacent pages to see more about what
+                            I do for work.
+                        </p>
+                    </div>
                 </div>
             </div>
         </Tile>
@@ -45,14 +48,33 @@
                 </template>
             </Tile>
         </div>
-        <h3 class="animate-in">My Work</h3>
+        <h2>My Work</h2>
         <div class="clients">
             <Tile color="#141616" :interactive="false" :hide-title="true">
                 <div class="client card" style="color: white">
-                    <div class="image">
-                        <img :src="tileImages.faceit" />
+                    <div class="row">
+                        <h3>FACEIT Media</h3>
+                        <div class="image">
+                            <img :src="tileImages.faceit" />
+                        </div>
                     </div>
-                    <div class="text"><p>I've done loads for faceit</p></div>
+
+                    <hr />
+
+                    <div class="row flex">
+                        <div class="bg-image right">
+                            <img :src="tileImages.cec" />
+                        </div>
+                        <div class="text left">
+                            <h5>Broadcast & LED Graphics</h5>
+                            <ul>
+                                <li></li>
+                                <li>Internal Apps</li>
+                                <li>XPression Operation</li>
+                                <li>Virtual Studio</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </Tile>
         </div>
@@ -67,7 +89,7 @@ import Header from './components/Header.vue'
 
 import tileImages from './assets/tile-images'
 
-import { ref, reactive, onMounted } from 'vue'
+import { reactive, onMounted } from 'vue'
 
 interface Tile {
     name: string
@@ -160,34 +182,81 @@ $margin: min(30px, 3vw);
 }
 
 .card {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 20px 30px;
     box-sizing: border-box;
-    column-gap: 20px;
 
-    .text {
-        text-align: left;
-        font-size: 1.33em;
-        flex-basis: 50%;
-        min-width: 40%;
-        flex-grow: 1;
+    position: relative;
+    z-index: 0;
+    width: 100%;
+
+    hr {
+        border-color: rgb(86, 86, 86);
+        margin: 0;
     }
 
-    .image {
-        width: 200px;
-        min-height: 200px;
+    .row {
+        width: 100%;
+        padding: 20px 30px;
+        box-sizing: border-box;
         position: relative;
 
-        img {
+        &.flex {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            column-gap: 20px;
+        }
+
+        .text {
+            text-align: left;
+            font-size: 1.33em;
+            flex-basis: 50%;
+            min-width: 40%;
+            flex-grow: 1;
+            z-index: 2;
+        }
+
+        .image {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            z-index: 2;
             border-radius: 50%;
-            max-height: 100%;
-            max-width: 100%;
+            background-color: rgba(42, 42, 42, 0.85);
+            flex-grow: 0;
+
+            &.header {
+                border-radius: 0;
+                background-color: unset;
+
+                img {
+                    border-radius: 50%;
+                }
+            }
+
+            img {
+                max-height: 100%;
+                max-width: 100%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+        .bg-image {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0;
+            height: 100%;
+
+            img {
+                height: 100%;
+                z-index: 2;
+                border-radius: 10px;
+            }
+            &.right {
+                right: 0;
+                left: auto;
+            }
         }
     }
 }
@@ -211,5 +280,10 @@ $margin: min(30px, 3vw);
 .fade-enter-from,
 .fade-leave-to {
     opacity: 0;
+}
+
+.animate-in {
+    opacity: 0;
+    transform: scale(0);
 }
 </style>
