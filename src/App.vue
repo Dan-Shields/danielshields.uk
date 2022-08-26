@@ -14,19 +14,14 @@
                     <div class="image header">
                         <img :src="tileImages.me" />
                     </div>
-                    <div class="text">
+                    <div class="text" style="font-size: 1.33em">
                         <p>
-                            Hi! I'm Dan, I'm a software developer, broadcast
-                            operator, sailor and pilot (almost).
+                            Hi, I'm Dan! I'm a software developer, broadcast
+                            operator, sailor and (almost) a pilot.
                         </p>
                         <p>
-                            Feel free to reach out if you're interested in
-                            working together, need help with a project or just
-                            want a chat!
-                        </p>
-                        <p>
-                            Check out the adjacent pages to see more about what
-                            I do for work.
+                            I'm always looking for more work so feel free to
+                            reach out if you're interested in working together.
                         </p>
                     </div>
                 </div>
@@ -61,18 +56,65 @@
 
                     <hr />
 
-                    <div class="row flex">
+                    <div class="row">
+                        <div class="text left">
+                            <h5>Broadcast & LED Graphics Development</h5>
+                            <p>
+                                Web-based graphics for integreation into live
+                                broadcasts or LED stages.
+                            </p>
+                            <p>Projects include:</p>
+                            <ul>
+                                <li>Rocket League HUD</li>
+                                <li>Rainbow Six: Siege Game State LED Asset</li>
+                            </ul>
+                        </div>
                         <div class="bg-image right">
                             <img :src="tileImages.cec" />
                         </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="row">
+                        <div class="bg-image left">
+                            <img :src="tileImages.cec" />
+                        </div>
+                        <div class="text right">
+                            <h5>FACEEATS</h5>
+                            <p>
+                                A fullstack web-app for facilitiating COVID-safe
+                                catering at FACEIT events, some of which hosting
+                                over 200 guests.
+                            </p>
+                            <p>
+                                Features include personalised orders, meal-time
+                                notifications, menu translations and integration
+                                with existing kitchen infrastructure.
+                            </p>
+                            <p>Tech stack: Node.js, Vue and MongoDB.</p>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="row">
                         <div class="text left">
-                            <h5>Broadcast & LED Graphics</h5>
-                            <ul>
-                                <li></li>
-                                <li>Internal Apps</li>
-                                <li>XPression Operation</li>
-                                <li>Virtual Studio</li>
-                            </ul>
+                            <h5>XPression Operation</h5>
+                        </div>
+                        <div class="bg-image right">
+                            <img :src="tileImages.cec" />
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="row">
+                        <div class="bg-image left">
+                            <img :src="tileImages.cec" />
+                        </div>
+                        <div class="text right">
+                            <h5>Other Projects</h5>
                         </div>
                     </div>
                 </div>
@@ -209,11 +251,22 @@ $margin: min(30px, 3vw);
 
         .text {
             text-align: left;
-            font-size: 1.33em;
             flex-basis: 50%;
             min-width: 40%;
-            flex-grow: 1;
+            flex-grow: 0;
             z-index: 2;
+
+            h5 {
+                font-size: 1.33em;
+            }
+
+            &.right {
+                padding-left: 40%;
+            }
+
+            &.left {
+                padding-right: 40%;
+            }
         }
 
         .image {
@@ -247,10 +300,10 @@ $margin: min(30px, 3vw);
             position: absolute;
             top: 0;
             height: 100%;
+            z-index: 1;
 
             img {
                 height: 100%;
-                z-index: 2;
                 border-radius: 10px;
             }
             &.right {

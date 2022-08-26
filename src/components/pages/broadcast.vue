@@ -75,11 +75,67 @@
                     <h4><u>Location</u></h4>
                 </div>
 
-                <div class="cell"><p>Saudi Arabia Race Watchalong</p></div>
-                <div class="cell"><p>Technical Producer</p></div>
-                <div class="cell"><p>Dec 1st → 5th 2021</p></div>
-                <div class="cell"><p>McLaren Shadow</p></div>
+                <div class="cell">
+                    <p>Commonwealth Esports Championships</p>
+                </div>
+                <div class="cell"><p>Live Graphics Developer</p></div>
+                <div class="cell"><p>Aug 1st → 7th 2022</p></div>
+                <div class="cell"><p>FACEIT</p></div>
+                <div class="cell"><p>Birmingham, UK</p></div>
+
+                <div class="cell">
+                    <p>Twitch Rivals: TwitchCon Amsterdam</p>
+                </div>
+                <div class="cell"><p>XPression Operator</p></div>
+                <div class="cell"><p>July 11th → 17th 2022</p></div>
+                <div class="cell"><p>Esports Engine</p></div>
+                <div class="cell"><p>Amsterdam, NL</p></div>
+
+                <div class="cell"><p>FIFA Global Series Playoffs</p></div>
+                <div class="cell"><p>XPression Operator</p></div>
+                <div class="cell"><p>June 30th → July 3rd 2022</p></div>
+                <div class="cell"><p>Esports Engine</p></div>
                 <div class="cell"><p>London, UK</p></div>
+
+                <div class="cell"><p>Twitch Rivals EMEA</p></div>
+                <div class="cell"><p>XPression Operator</p></div>
+                <div class="cell"><p>June 14th & 16th 2022</p></div>
+                <div class="cell"><p>Esports Engine</p></div>
+                <div class="cell"><p>London, UK</p></div>
+
+                <div class="cell"><p>Indy 500 Watchalong</p></div>
+                <div class="cell"><p>Live Graphics Developer</p></div>
+                <div class="cell"><p>May 29th 2022</p></div>
+                <div class="cell"><p>McLaren Shadow</p></div>
+                <div class="cell"><p>Woking, UK</p></div>
+
+                <div class="cell">
+                    <p>Rainbow Six Siege Major: Charlotte</p>
+                </div>
+                <div class="cell">
+                    <p>Live Graphics Developer, XPression Operator</p>
+                </div>
+                <div class="cell"><p>May 12th → May 22nd 2022</p></div>
+                <div class="cell"><p>FACEIT</p></div>
+                <div class="cell"><p>Charlotte, NC</p></div>
+
+                <div class="cell"><p>Valorant Regional League: Polaris</p></div>
+                <div class="cell"><p>Graphics Operator</p></div>
+                <div class="cell"><p>May 2022</p></div>
+                <div class="cell"><p>Promod</p></div>
+                <div class="cell"><p>Remote</p></div>
+
+                <div class="cell"><p>FIFA Team of the Season Cup</p></div>
+                <div class="cell"><p>XPression Operator</p></div>
+                <div class="cell"><p>April 27th → May 1st 2022</p></div>
+                <div class="cell"><p>Esports Engine</p></div>
+                <div class="cell"><p>London, UK</p></div>
+
+                <div class="cell"><p>UKIN Rainbow Rumble R6</p></div>
+                <div class="cell"><p>XPression Operator</p></div>
+                <div class="cell"><p>Jan 24th 2022</p></div>
+                <div class="cell"><p>Promod</p></div>
+                <div class="cell"><p>Remote</p></div>
 
                 <div class="cell"><p>Saudi Arabia Race Watchalong</p></div>
                 <div class="cell"><p>Technical Producer</p></div>
@@ -93,7 +149,7 @@
                 <div class="cell"><p>McLaren Shadow</p></div>
                 <div class="cell"><p>Woking, UK</p></div>
 
-                <div class="cell"><p>Six Major: Mexico</p></div>
+                <div class="cell"><p>Rainbow Six Siege Major: Mexico</p></div>
                 <div class="cell"><p>GFX OP</p></div>
                 <div class="cell"><p>Aug 9th → 22nd 2021</p></div>
                 <div class="cell"><p>FACEIT</p></div>
