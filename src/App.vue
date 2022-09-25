@@ -323,7 +323,7 @@
                 <div>
                     <img
                         class="sm:max-w-1/2 max-w-4/5 m-auto max-h-[175px] rounded-xl"
-                        src="./assets/clients/uomesports-banner.png"
+                        src="./assets/clients/uomesports-banner.jpg"
                     />
                 </div>
 
