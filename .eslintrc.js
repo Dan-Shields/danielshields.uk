@@ -19,7 +19,7 @@ module.exports = {
         'vue/no-v-html': 1,
         'vue/html-self-closing': 'off',
         'vue/attribute-hyphenation': 0,
-        'vue/html-indent': [2, 4],
+        'vue/html-indent': [0, 4],
         'vue/max-attributes-per-line': [
             1,
             {

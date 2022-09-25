@@ -158,7 +158,7 @@ watch(hover, (newHover) => {
         .image {
             max-width: 80%;
             max-height: 80%;
-            height: 325px;
+            //height: 325px;
             margin: auto;
 
             user-select: none;
