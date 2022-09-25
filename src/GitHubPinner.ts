@@ -164,7 +164,7 @@ function search(e: any) {
 
 function getRepo(obj: any) {
     let temp =
-        '<div id="gp-container-repo"><a class="gp-title" href="' +
+        '<div id="gp-container-repo"><a class="gp-title" target="_blank" href="' +
         obj.html_url +
         '">' +
         obj.name +
@@ -180,7 +180,7 @@ function getRepo(obj: any) {
             '</p>'
     if (obj.stargazers_count != 0)
         temp +=
-            '<a class="gp-stat gp-link" href="' +
+            '<a class="gp-stat gp-link" target="_blank" href="' +
             obj.html_url +
             '/stargazers' +
             '"><svg class="gp-octicon" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74z"></path></svg>' +
