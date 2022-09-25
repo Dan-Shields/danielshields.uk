@@ -523,31 +523,29 @@ const contactMethods = reactive<Tile[]>([
 ])
 
 onMounted(() => {
-    window.addEventListener('load', () => {
-        anime({
-            targets: '.animate-in',
-            opacity: {
-                value: [0, 1],
-                duration: 1250,
-                easing: 'easeOutQuart',
-            },
-            scale: {
-                value: [0, 1],
-                duration: 1500,
-                easing: 'easeOutElastic(1, 1)',
-            },
-            delay: anime.stagger(100, { start: 200 }),
-        })
+    anime({
+        targets: '.animate-in',
+        opacity: {
+            value: [0, 1],
+            duration: 1250,
+            easing: 'easeOutQuart',
+        },
+        scale: {
+            value: [0, 1],
+            duration: 1500,
+            easing: 'easeOutElastic(1, 1)',
+        },
+        delay: anime.stagger(100, { start: 200 }),
+    })
 
-        anime({
-            targets: '.fade-in',
-            opacity: {
-                value: [0, 1],
-                duration: 1000,
-                easing: 'easeOutQuart',
-            },
-            delay: 1100,
-        })
+    anime({
+        targets: '.fade-in',
+        opacity: {
+            value: [0, 1],
+            duration: 1000,
+            easing: 'easeOutQuart',
+        },
+        delay: 1100,
     })
 })
 </script>

@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
 import anime from 'animejs'
 
@@ -20,7 +20,7 @@ const props = defineProps({
 
 const titleDiv = ref(null)
 
-window.addEventListener('load', () => {
+onMounted(() => {
     anime({
         targets: [titleDiv.value],
         opacity: {
