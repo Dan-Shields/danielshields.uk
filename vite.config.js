@@ -1,12 +1,9 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import ElementPlus from 'unplugin-element-plus/vite'
+import viteCompression from 'vite-plugin-compression'
 
-export default defineConfig(() => { 
+export default defineConfig(() => {
     return {
-        plugins: [
-            vue(),
-            ElementPlus()
-        ]
+        plugins: [vue(), viteCompression()],
     }
 })
