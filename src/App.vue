@@ -134,8 +134,8 @@
 
                 <Project color="#3f3f3f">
                     <h5 class="text-xl">Other Projects</h5>
-                    <ul class="space-y-4">
-                        <li>
+                    <div class="space-y-4">
+                        <div>
                             <h6
                                 class="text-base border-b border-orange-400 mb-1"
                             >
@@ -157,8 +157,8 @@
                                     XPression-like control panel.
                                 </p>
                             </div>
-                        </li>
-                        <li>
+                        </div>
+                        <div>
                             <h6
                                 class="text-base border-b border-orange-400 mb-1"
                             >
@@ -184,8 +184,8 @@
                                     ></iframe>
                                 </div>
                             </div>
-                        </li>
-                        <li>
+                        </div>
+                        <div>
                             <h6
                                 class="text-base border-b border-orange-400 mb-1"
                             >
@@ -207,14 +207,14 @@
                                         scrolling="no"
                                         height="378"
                                         width="620"
-                                        class="absolute top-0 left-0 w-full h-full"
                                         loading="lazy"
+                                        class="absolute top-0 left-0 w-full h-full"
                                     ></iframe>
                                 </div>
                             </div>
-                        </li>
+                        </div>
 
-                        <li>
+                        <div>
                             <h6
                                 class="text-base border-b border-orange-400 mb-1"
                             >
@@ -226,8 +226,8 @@
                                 for an operator. Computer vision was used as the
                                 game did not offer gamestate integration.
                             </p>
-                        </li>
-                        <li>
+                        </div>
+                        <div>
                             <h6
                                 class="text-base border-b border-orange-400 mb-1"
                             >
@@ -238,8 +238,8 @@
                                 Discord video call, ensuring users' presence and
                                 enabling camera focus. Used on FLASHPOINT 3.
                             </p>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </Project>
             </div>
 
