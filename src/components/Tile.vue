@@ -1,23 +1,22 @@
 <template>
     <a
         ref="tile"
-        class="tile"
+        class="w-full max-w-full sm:p-2 p-1 box-border block"
         :href="link ?? undefined"
         :target="link ? '_blank' : undefined"
     >
         <div
             ref="box"
-            class="box"
+            class="w-full h-full box-border flex flex-col items-center justify-center cursor-pointer rounded-xl"
             :style="boxStyle"
             @mouseover="updateHover(true)"
             @mouseout="updateHover(false)"
         >
-            <img v-if="imageUrl && !fullImage" class="image" :src="imageUrl" />
-
-            <h1 v-else-if="!hideTitle" class="title" :class="{ interactive }">
-                <slot name="title"></slot>
-            </h1>
-            <slot></slot>
+            <img
+                v-if="imageUrl && !fullImage"
+                class="m-auto select-none max-h-[80%] max-w-[80%]"
+                :src="imageUrl"
+            />
         </div>
     </a>
 </template>
@@ -121,53 +120,3 @@ watch(hover, (newHover) => {
     })
 })
 </script>
-
-<style lang="scss" scoped>
-.tile {
-    width: 100%;
-    max-width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-    display: block;
-
-    .box {
-        width: 100%;
-        height: 100%;
-        border-radius: 10px;
-
-        box-sizing: border-box;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-
-        .title {
-            color: white;
-            vertical-align: middle;
-            margin: 15px 0;
-            user-select: none;
-
-            padding: 5px;
-            &.interactive {
-                cursor: pointer;
-            }
-        }
-
-        .image {
-            max-width: 80%;
-            max-height: 80%;
-            //height: 325px;
-            margin: auto;
-
-            user-select: none;
-        }
-    }
-}
-
-.fade-enter-from,
-.fade-leave-to {
-    opacity: 0;
-}
-</style>

@@ -1,6 +1,6 @@
 <template>
     <div
-        class="p-5 box-border bg-contain bg-no-repeat bg-right sm:aspect-[5/2] text-left rounded-md project flex flex-wrap"
+        class="sm:p-5 p-0 box-border bg-no-repeat bg-right sm:aspect-[5/2] text-left rounded-xl project flex flex-wrap bg-contain"
         :class="{
             'bg-right': !textRight,
             'bg-left': textRight,
@@ -16,7 +16,7 @@
         }"
     >
         <div
-            class="w-full mb-5 basis-full shrink-0 sm:hidden relative"
+            class="w-full basis-full shrink-0 sm:hidden relative max-h-[320px] overflow-hidden rounded-xl"
             :class="{
                 hidden: !bgImage,
             }"
@@ -25,10 +25,10 @@
                 :src="image"
                 class="m-auto absolute max-w-[90%] max-h-[90%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 dropshadow"
             />
-            <img :src="bgImage" class="w-full rounded-xl" />
+            <img :src="bgImage" class="w-full" />
         </div>
         <div
-            class="space-y-2 w-full"
+            class="space-y-2 w-full sm:p-0 p-4"
             :class="{
                 'sm:w-1/2': !!bgImage,
             }"

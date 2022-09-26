@@ -1,12 +1,14 @@
 <template>
-    <Header />
+    <div class="max-w-full m-auto align-middle w-full min-w-[240px]">
+        <h1 class="animate-in text-5xl mt-9 mb-8">Daniel Shields</h1>
+    </div>
 
-    <div class="page p-2.5">
+    <div class="page p-2.5 pt-0">
         <div
-            class="p-5 m-2.5 bg-gradient-to-br from-neutral-200 to-neutral-100 rounded-xl flex flex-wrap gap-4 justify-between items-center animate-in"
+            class="px-5 bg-gradient-to-br rounded-xl flex flex-wrap gap-4 justify-between items-center animate-in"
         >
             <div
-                class="basis-[144px] grow overflow-hidden aspect-video sm:aspect-auto sm:rounded-full rounded-xl"
+                class="basis-[164px] grow overflow-hidden aspect-video sm:aspect-auto sm:rounded-full rounded-xl mb-6"
             >
                 <img
                     class="sm:translate-y-0 -translate-y-[33%] sm:scale-110"
@@ -37,18 +39,14 @@
                 :full-image="tile.fullImage ?? false"
                 :interactive="tile.interactive ?? true"
                 class="animate-in basis-1/4 aspect-square"
-            >
-                <template #title>
-                    {{ tile.title }}
-                </template>
-            </Tile>
+            />
         </div>
-        <h1 class="pt-4 text-3xl underline border-t border-slate-500 mt-3 mx-3">
+        <h1 class="pt-4 text-3xl border-t border-slate-500 mt-3 mx-3">
             My Work
         </h1>
-        <div class="m-2.5 space-y-4">
+        <div class="m-1 sm:m-2.5 space-y-4">
             <div
-                class="p-5 bg-gradient-to-br from-neutral-800 to-neutral-600 text-white rounded-xl space-y-4 text-sm"
+                class="sm:p-5 p-2.5 bg-gradient-to-br from-neutral-800 to-neutral-600 text-white rounded-xl space-y-4 text-sm"
             >
                 <div class="pb-5">
                     <img
@@ -244,7 +242,7 @@
             </div>
 
             <div
-                class="p-5 bg-gradient-to-br to-[#2e00f8] from-[#2700db] text-white rounded-xl space-y-4 text-sm"
+                class="sm:p-5 p-2.5 bg-gradient-to-br to-[#2e00f8] from-[#2700db] text-white rounded-xl space-y-4 text-sm"
             >
                 <div class="pb-5">
                     <img
@@ -254,7 +252,7 @@
                 </div>
 
                 <Project
-                    color="#004EF8"
+                    color="#1a1a1a"
                     :image="projectImages.mclaren"
                     :bgImage="projectImages.mclarenBg"
                     :textRight="false"
@@ -286,7 +284,7 @@
             </div>
 
             <div
-                class="p-5 bg-gradient-to-br to-gray-200 from-gray-300 text-black rounded-xl space-y-4 text-sm"
+                class="sm:p-5 p-2.5 bg-gradient-to-br to-gray-200 from-gray-300 text-black rounded-xl space-y-4 text-sm"
             >
                 <div>
                     <img
@@ -317,8 +315,9 @@
                     </ul>
                 </Project>
             </div>
+
             <div
-                class="p-5 bg-gradient-to-br to-purple-800 from-purple-900 text-white rounded-xl space-y-4 text-sm"
+                class="sm:p-5 p-2.5 bg-gradient-to-br to-purple-800 from-purple-900 text-white rounded-xl space-y-4 text-sm"
             >
                 <div>
                     <img
@@ -405,7 +404,7 @@
             </div>
 
             <div
-                class="p-5 bg-gradient-to-br from-[#4ad8ab] to-[#30bfc2] rounded-xl space-y-4 text-sm"
+                class="sm:p-5 p-2.5 bg-gradient-to-br from-[#4ad8ab] to-[#30bfc2] rounded-xl space-y-4 text-sm"
             >
                 <div>
                     <h1 class="text-4xl text-white">Open Source</h1>
@@ -470,7 +469,6 @@
 import anime from 'animejs'
 
 import Tile from './components/Tile.vue'
-import Header from './components/Header.vue'
 
 import projectImages from './assets/projects'
 import contactImages from './assets/contact'

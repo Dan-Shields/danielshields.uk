@@ -1,5 +1,5 @@
 <template>
-    <div class="h-full bg-[#F3F3F3] p-0 m-2.5 rounded-xl">
+    <div class="h-full bg-[#F3F3F3] p-0 sm:m-2.5 m-1 rounded-xl">
         <h1
             class="p-2 pt-4 bg-blue-500 mb-0 mt-0 text-white rounded-t-xl text-3xl font-black"
         >
