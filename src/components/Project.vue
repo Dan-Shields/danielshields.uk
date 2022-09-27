@@ -16,7 +16,7 @@
         }"
     >
         <div
-            class="w-full basis-full shrink-0 sm:hidden relative max-h-[320px] overflow-hidden rounded-xl"
+            class="w-full basis-full shrink-0 sm:hidden relative max-h-[320px] overflow-hidden"
             :class="{
                 hidden: !bgImage,
             }"
@@ -24,11 +24,16 @@
             <img
                 :src="image"
                 class="m-auto absolute max-w-[90%] max-h-[90%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 dropshadow"
+                :alt="image && projectName ? projectName : undefined"
             />
-            <img :src="bgImage" class="w-full" />
+            <img
+                :src="bgImage"
+                class="w-full rounded-t-xl"
+                :alt="projectName"
+            />
         </div>
         <div
-            class="space-y-2 w-full sm:p-0 p-4"
+            class="space-y-3 w-full sm:p-0 p-4"
             :class="{
                 'sm:w-1/2': !!bgImage,
             }"
@@ -39,6 +44,7 @@
             <img
                 :src="image"
                 class="w-full m-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 dropshadow"
+                :alt="image && projectName ? projectName : undefined"
             />
         </div>
     </div>
@@ -61,6 +67,10 @@ const props = defineProps({
     textRight: {
         type: Boolean,
         default: false,
+    },
+    projectName: {
+        type: String,
+        default: '',
     },
 })
 </script>

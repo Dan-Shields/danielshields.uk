@@ -1,36 +1,36 @@
 <template>
-    <div class="h-full bg-[#F3F3F3] p-0 sm:m-2.5 m-1 rounded-xl">
+    <div class="h-full bg-[#F3F3F3] p-0 sm:m-2.5 mt-4 sm:mt-4 m-1 rounded-xl">
         <h1
             class="p-2 pt-4 bg-blue-500 mb-0 mt-0 text-white rounded-t-xl text-3xl font-black"
         >
-            Event List
+            Event History
         </h1>
         <div class="table-container">
             <div class="event-table flex flex-wrap p-0 mb-[2em] text-sm">
                 <div
                     class="bg-blue-600 text-white align-bottom underline font-black"
                 >
-                    <h4>Event Name</h4>
+                    <h6>Event Name</h6>
                 </div>
                 <div
                     class="bg-blue-600 text-white align-bottom underline font-black"
                 >
-                    <h4>Role</h4>
+                    <h6>Role</h6>
                 </div>
                 <div
                     class="bg-blue-600 text-white align-bottom underline font-black"
                 >
-                    <h4>Date</h4>
+                    <h6>Date</h6>
                 </div>
                 <div
                     class="bg-blue-600 text-white align-bottom underline font-black"
                 >
-                    <h4>Client</h4>
+                    <h6>Client</h6>
                 </div>
                 <div
                     class="bg-blue-600 text-white align-bottom underline font-black"
                 >
-                    <h4>Location</h4>
+                    <h6>Location</h6>
                 </div>
 
                 <div>Commonwealth Esports Championships</div>
@@ -189,7 +189,7 @@
                 <div>UoM Esports Society</div>
                 <div>Manchester, UK</div>
 
-                <div>King the North 2018</div>
+                <div>King the North VI</div>
                 <div>Head of Production</div>
                 <div>December 1st → 2nd 2018</div>
                 <div>UoM Esports Society</div>

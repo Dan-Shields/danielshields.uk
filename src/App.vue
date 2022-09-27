@@ -5,14 +5,15 @@
 
     <div class="page p-2.5 pt-0">
         <div
-            class="px-5 bg-gradient-to-br rounded-xl flex flex-wrap gap-4 justify-between items-center animate-in"
+            class="px-5 sm:pt-2 pb-6 bg-gradient-to-br rounded-xl flex flex-wrap gap-4 justify-between items-center animate-in"
         >
             <div
-                class="basis-[164px] grow overflow-hidden aspect-video sm:aspect-auto sm:rounded-full rounded-xl mb-6"
+                class="basis-[164px] grow overflow-hidden aspect-video sm:aspect-auto sm:rounded-full rounded-xl"
             >
                 <img
                     class="sm:translate-y-0 -translate-y-[33%] sm:scale-110"
-                    src="./assets/me-full.jpg"
+                    src="./assets/me-full.webp"
+                    alt="Picture of me!"
                 />
             </div>
             <div class="text-xl text-left space-y-4 basis-[400px] grow">
@@ -21,12 +22,14 @@
                     sailor and private pilot.
                 </p>
                 <p>
-                    This page is to showcase my work experience and I'm always
-                    looking for more work so feel free to reach out via any of
-                    the platforms below to discuss how I can help with your next
-                    broadcast!
+                    I offer a range of services to anyone looking to take their
+                    broadcast graphics to the next level, whether it be for
+                    esports or otherwise.
                 </p>
-                <p></p>
+                <p>
+                    Check out my experience below and get in touch if you'd like
+                    to discuss how I can help with your next project.
+                </p>
             </div>
         </div>
         <div class="flex flex-wrap">
@@ -41,9 +44,7 @@
                 class="animate-in basis-1/4 aspect-square"
             />
         </div>
-        <h1 class="pt-4 text-3xl border-t border-slate-500 mt-3 mx-3">
-            My Work
-        </h1>
+        <h1 class="pt-4 text-3xl border-t border-slate-500 mt-3 mx-3"></h1>
         <div class="m-1 sm:m-2.5 space-y-4">
             <div
                 class="sm:p-5 p-2.5 bg-gradient-to-br from-neutral-800 to-neutral-600 text-white rounded-xl space-y-4 text-sm"
@@ -52,6 +53,7 @@
                     <img
                         class="sm:w-1/2 w-4/5 m-auto mt-2"
                         src="./assets/clients/faceit-full-bright.svg"
+                        alt="FACEIT Logo"
                     />
                 </div>
 
@@ -59,16 +61,19 @@
                     color="#3f3f3f"
                     :bgImage="projectImages.cecBg"
                     :textRight="false"
+                    project-name="Broadcast & LED Graphics Development"
                 >
                     <h5 class="text-xl border-b border-orange-400">
                         Broadcast & LED Graphics Development
                     </h5>
                     <p>
                         Web-based graphics for integration into live broadcasts
-                        or LED stages.
+                        or LED stages, pulling data from operator control
+                        panels, stats & social media APIs and directly from live
+                        games.
                     </p>
                     <p>Projects include:</p>
-                    <ul class="list-disc list-inside">
+                    <ul class="list-disc list-inside space-y-1">
                         <li>
                             <a
                                 href="https://youtu.be/aCZDfpzGnkg?t=1464"
@@ -96,6 +101,7 @@
                     :image="projectImages.xpression"
                     :bgImage="projectImages.r6MajorBg"
                     :textRight="true"
+                    project-name="Graphics Operator"
                 >
                     <h5 class="text-xl border-b border-orange-400">
                         Graphics Operator
@@ -115,6 +121,7 @@
                     color="#3f3f3f"
                     :bgImage="projectImages.r6Mexico"
                     :textRight="false"
+                    project-name="FACEEATS"
                 >
                     <h5 class="text-xl border-b border-orange-400">FACEEATS</h5>
                     <p>
@@ -174,7 +181,7 @@
                                         width="560"
                                         height="315"
                                         src="https://www.youtube.com/embed/0t8uqN2CgRo?clip=UgkxkeumM1qDPrkRJOWvjS0H2Ns_zme4JHcf&amp;clipt=EN7nxgEYy9_HAQ"
-                                        title="YouTube video player"
+                                        title="FLASHPOINT 3 Augmented Reality Clip"
                                         frameborder="0"
                                         allow="encrypted-media"
                                         loading="lazy"
@@ -206,6 +213,7 @@
                                         height="378"
                                         width="620"
                                         loading="lazy"
+                                        title="R6 Siege EUL Virtual Studio Clip"
                                         class="absolute top-0 left-0 w-full h-full"
                                     ></iframe>
                                 </div>
@@ -248,6 +256,7 @@
                     <img
                         class="sm:max-w-1/2 max-w-4/5 m-auto mt-2 max-h-[175px]"
                         src="./assets/clients/mclaren-shadow.png"
+                        alt="McLaren Shadow Logo"
                     />
                 </div>
 
@@ -256,6 +265,7 @@
                     :image="projectImages.mclaren"
                     :bgImage="projectImages.mclarenBg"
                     :textRight="false"
+                    project-name="Data-Driven Broadcast Graphics"
                 >
                     <h5 class="text-xl border-b border-orange-500">
                         Data-Driven Broadcast Graphics
@@ -290,6 +300,7 @@
                     <img
                         class="sm:max-w-1/2 max-w-4/5 m-auto max-h-[175px]"
                         src="./assets/clients/ee.png"
+                        alt="Esports Engine Logo"
                     />
                 </div>
 
@@ -298,6 +309,7 @@
                     :image="projectImages.xpression"
                     :bgImage="projectImages.twitchCon"
                     :textRight="true"
+                    project-name="XPression Operator"
                 >
                     <h5 class="text-xl border-b border-red-700">
                         XPression Operator
@@ -322,7 +334,8 @@
                 <div>
                     <img
                         class="sm:max-w-1/2 max-w-4/5 m-auto max-h-[175px] rounded-xl"
-                        src="./assets/clients/uomesports-banner.jpg"
+                        src="./assets/clients/uomesports-banner.webp"
+                        alt="UoM Esports Logo"
                     />
                 </div>
 
@@ -331,6 +344,7 @@
                     :image="projectImages.kotn"
                     :bgImage="projectImages.kotnBg"
                     :textRight="false"
+                    project-name="King of the North"
                 >
                     <h5 class="text-xl border-b border-yellow-500">
                         King of the North
@@ -373,6 +387,7 @@
                     :image="projectImages.hiveaid"
                     :bgImage="projectImages.hiveaidBg"
                     :textRight="true"
+                    project-name="HiveAid"
                 >
                     <h5 class="text-xl border-b border-yellow-500">HiveAid</h5>
                     <p>
@@ -407,7 +422,7 @@
                 class="sm:p-5 p-2.5 bg-gradient-to-br from-[#4ad8ab] to-[#30bfc2] rounded-xl space-y-4 text-sm"
             >
                 <div>
-                    <h1 class="text-4xl text-white">Open Source</h1>
+                    <h2 class="text-3xl text-white pt-2">Open Source</h2>
                 </div>
 
                 <Project color="#fafafa" :textRight="false">
@@ -460,8 +475,77 @@
                     </div>
                 </Project>
             </div>
+            <div
+                class="sm:p-5 p-2.5 bg-gradient-to-br to-slate-300 from-slate-400 rounded-xl space-y-4 text-sm"
+            >
+                <div>
+                    <h2 class="text-3xl text-white py-2">
+                        Familiar Technologies
+                    </h2>
+                    <div class="flex flex-wrap justify-center">
+                        <div class="aspect-square m-2 w-[130px] relative">
+                            <img
+                                :src="techImages.js"
+                                class="m-auto select-none max-h-[90%] max-w-[90%] left-1/2 top-1/2 -translate-y-[50%] -translate-x-[50%] absolute"
+                                alt="TypeScript & JavaScript Logos"
+                            />
+                        </div>
+                        <div class="aspect-square m-2 w-[130px] relative">
+                            <img
+                                :src="techImages.vue"
+                                class="m-auto select-none max-h-[90%] max-w-[90%] left-1/2 top-1/2 -translate-y-[50%] -translate-x-[50%] absolute"
+                                alt="Vue.js Logo"
+                            />
+                        </div>
+                        <div class="aspect-square m-2 w-[130px] relative">
+                            <img
+                                :src="techImages.xpression"
+                                class="m-auto select-none max-h-[90%] max-w-[90%] left-1/2 top-1/2 -translate-y-[50%] -translate-x-[50%] absolute"
+                                alt="XPression Logo"
+                            />
+                        </div>
+                        <div class="aspect-square m-2 w-[130px] relative">
+                            <img
+                                :src="techImages.casparcg"
+                                class="m-auto select-none max-h-[90%] max-w-[90%] left-1/2 top-1/2 -translate-y-[50%] -translate-x-[50%] absolute"
+                                alt="CasparCG Logo"
+                            />
+                        </div>
+
+                        <div class="aspect-square m-2 w-[130px] relative">
+                            <img
+                                :src="techImages.csharp"
+                                class="m-auto select-none max-h-[90%] max-w-[90%] left-1/2 top-1/2 -translate-y-[50%] -translate-x-[50%] absolute"
+                                alt="C# Logo"
+                            />
+                        </div>
+                        <div class="aspect-square m-2 w-[130px] relative">
+                            <img
+                                :src="techImages.ue4"
+                                class="m-auto select-none max-h-[90%] max-w-[90%] left-1/2 top-1/2 -translate-y-[50%] -translate-x-[50%] absolute"
+                                alt="UE4 Logo"
+                            />
+                        </div>
+
+                        <div class="aspect-square m-2 w-[130px] relative">
+                            <img
+                                :src="techImages.obs"
+                                class="m-auto select-none max-h-[90%] max-w-[90%] left-1/2 top-1/2 -translate-y-[50%] -translate-x-[50%] absolute"
+                                alt="OBS Logo"
+                            />
+                        </div>
+                        <div class="aspect-square m-2 w-[130px] relative">
+                            <img
+                                :src="techImages.bmd"
+                                class="m-auto select-none max-h-[90%] max-w-[90%] left-1/2 top-1/2 -translate-y-[50%] -translate-x-[50%] absolute"
+                                alt="Blackmagic Design Logo"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <Broadcast class="mt-5" />
+        <Broadcast />
     </div>
 </template>
 
@@ -472,6 +556,7 @@ import Tile from './components/Tile.vue'
 
 import projectImages from './assets/projects'
 import contactImages from './assets/contact'
+import techImages from './assets/tech-logos'
 
 import { reactive, onMounted } from 'vue'
 import Project from './components/Project.vue'
