@@ -1,0 +1,32 @@
+{
+    "public": "dist",
+    "headers": [
+        {
+            "source": "**/*.gz",
+            "headers": [
+                {
+                    "key": "Content-Encoding",
+                    "value": "gzip"
+                }
+            ]
+        },
+        {
+            "source": "**/*.js.gz",
+            "headers": [
+                {
+                    "key": "Content-Type",
+                    "value": "text/javascript"
+                }
+            ]
+        },
+        {
+            "source": "**/*.css.gz",
+            "headers": [
+                {
+                    "key": "Content-Type",
+                    "value": "text/css"
+                }
+            ]
+        }
+    ]
+}
