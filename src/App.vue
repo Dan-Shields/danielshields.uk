@@ -5,10 +5,10 @@
 
     <div class="page p-2.5 pt-0">
         <div
-            class="px-5 sm:pt-2 pb-6 bg-gradient-to-br rounded-xl flex flex-wrap gap-4 justify-between items-center animate-in"
+            class="px-5 sm:pt-2 pb-6 bg-gradient-to-br rounded-xl flex flex-wrap gap-4 justify-between items-center"
         >
             <div
-                class="basis-[164px] grow overflow-hidden aspect-video sm:aspect-auto sm:rounded-full rounded-xl"
+                class="basis-[164px] grow overflow-hidden aspect-video sm:aspect-auto sm:rounded-full rounded-xl animate-in"
             >
                 <img
                     class="sm:translate-y-0 -translate-y-[33%] sm:scale-110"
@@ -16,7 +16,9 @@
                     alt="Picture of me!"
                 />
             </div>
-            <div class="text-xl text-left space-y-4 basis-[400px] grow">
+            <div
+                class="text-xl text-left space-y-4 basis-[400px] grow animate-in"
+            >
                 <p>
                     Hi, I'm Dan! I'm a broadcast software developer & operator,
                     sailor and private pilot.
