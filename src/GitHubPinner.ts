@@ -1,5 +1,4 @@
 import lang_colors_raw from './assets/GitHubPinner_lang_colors.json'
-import dan_shields_repos from './assets/dan-shields_repos.json'
 
 const lang_colors = lang_colors_raw as {
     [key: string]: {
@@ -208,24 +207,6 @@ function getDataForUrl(
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             completion(JSON.parse(request.responseText), type, element)
-        } else if (
-            request.readyState == 4 &&
-            url == 'https://api.github.com/users/dan-shields/repos'
-        ) {
-            completion(dan_shields_repos, type, element)
-        } else if (
-            request.readyState == 4 &&
-            /^(https:\/\/api.github.com\/repos\/dan-shields\/)[A-Za-z\d-]{1,100}(\/)?$/.test(
-                url
-            )
-        ) {
-            const repoName = url.split('/').slice(-1)[0].toLowerCase()
-
-            const repoData = dan_shields_repos.find(
-                (repo) => repo.name.toLowerCase() === repoName
-            )
-
-            if (repoData) completion(repoData, type, element)
         }
     }
 
