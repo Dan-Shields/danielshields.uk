@@ -326,6 +326,7 @@
                         <li><i>Twitch Rivals: TwitchCon Amsterdam</i></li>
                         <li><i>FIFA Global Series Playoffs</i></li>
                         <li><i>FIFA Team of the Season Cup</i></li>
+                        <li><i>Apex Legends Global Series Qualifiers</i></li>
                     </ul>
                 </Project>
             </div>

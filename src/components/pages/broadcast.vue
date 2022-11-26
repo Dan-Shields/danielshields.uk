@@ -33,6 +33,30 @@
                     <h6>Location</h6>
                 </div>
 
+                <div>Dreamhack Atlanta BYOC</div>
+                <div>In-game HUD Developer</div>
+                <div>November 18th → 20th 2022</div>
+                <div>Printstream Media</div>
+                <div>Remote</div>
+
+                <div>Apex ALGS | EMEA & NA</div>
+                <div>XPression Operator</div>
+                <div>November 6th & 7th 2022</div>
+                <div>Esports Engine</div>
+                <div>London, UK</div>
+
+                <div>Mexico GP Watchalong</div>
+                <div>Live Graphics Developer</div>
+                <div>October 30th 2022</div>
+                <div>Mclaren Shadow</div>
+                <div>Remote</div>
+
+                <div>Rainbow Six: Siege NAL 2022 Stage 3</div>
+                <div>Graphics Developer</div>
+                <div>September 2022</div>
+                <div>FACEIT</div>
+                <div>Remote</div>
+
                 <div>Commonwealth Esports Championships</div>
                 <div>Live Graphics Developer</div>
                 <div>Aug 1st → 7th 2022</div>
