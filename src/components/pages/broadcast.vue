@@ -33,6 +33,30 @@
                     <h6>Location</h6>
                 </div>
 
+                <div>Challengers NE: Polaris</div>
+                <div>Graphics Operator</div>
+                <div>January → March 2023</div>
+                <div>Promod</div>
+                <div>Remote</div>
+
+                <div>2023 Car Launch</div>
+                <div>Broadcast Technician</div>
+                <div>February 2023</div>
+                <div>McLaren Racing</div>
+                <div>Remote</div>
+
+                <div>Gameshow Pilot</div>
+                <div>Virtual Studio Developer</div>
+                <div>January 2023</div>
+                <div>dock10</div>
+                <div>Remote</div>
+
+                <div>Gameshow Pilot</div>
+                <div>Virtual Studio Developer & Operator</div>
+                <div>November 28th → December 6th 2022</div>
+                <div>dock10</div>
+                <div>Manchester, UK</div>
+
                 <div>Dreamhack Atlanta BYOC</div>
                 <div>In-game HUD Developer</div>
                 <div>November 18th → 20th 2022</div>
@@ -52,7 +76,7 @@
                 <div>Remote</div>
 
                 <div>Rainbow Six: Siege NAL 2022 Stage 3</div>
-                <div>Graphics Developer</div>
+                <div>Live Graphics Developer</div>
                 <div>September 2022</div>
                 <div>FACEIT</div>
                 <div>Remote</div>
