@@ -548,7 +548,7 @@
                 </div>
             </div>
         </div>
-        <Broadcast />
+        <Events />
     </div>
 </template>
 
@@ -563,7 +563,7 @@ import techImages from './assets/tech-logos'
 
 import { reactive, onMounted } from 'vue'
 import Project from './components/Project.vue'
-import Broadcast from './components/pages/broadcast.vue'
+import Events from './components/Events.vue'
 
 interface Tile {
     name: string

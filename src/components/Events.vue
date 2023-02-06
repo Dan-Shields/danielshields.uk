@@ -39,12 +39,6 @@
                 <div>Promod</div>
                 <div>Remote</div>
 
-                <div>2023 Car Launch</div>
-                <div>Broadcast Technician</div>
-                <div>February 2023</div>
-                <div>McLaren Racing</div>
-                <div>Remote</div>
-
                 <div>Gameshow Pilot</div>
                 <div>Virtual Studio Developer</div>
                 <div>January 2023</div>
