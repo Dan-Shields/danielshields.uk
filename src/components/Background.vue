@@ -42,6 +42,8 @@ function draw(ts: DOMHighResTimeStamp) {
 
     ctx.fillStyle = '#6a469222'
 
+    const rect = canvas.value.getClientRects()[0]
+
     for (let i = 0; i < canvas.value.height / GAP; i++) {
         const cY = (i + 0.5) * GAP
 
@@ -66,8 +68,6 @@ function draw(ts: DOMHighResTimeStamp) {
                     Math.sin(
                         ((2 * Math.PI) / WAVE_LENGTH) * (cX - ts * WAVE_SPEED),
                     )
-
-            const rect = canvas.value.getClientRects()[0]
 
             if (sourceType.value === 'mouse') {
                 const mouseDist = Math.sqrt(
