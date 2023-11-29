@@ -7,22 +7,19 @@
     >
         <div
             ref="box"
-            class="w-full h-full box-border flex flex-col items-center justify-center cursor-pointer rounded-xl"
+            class="w-full h-full box-border flex flex-col items-center justify-center cursor-pointer rounded-xl relative"
             :style="boxStyle"
             @mouseover="updateHover(true)"
             @mouseout="updateHover(false)"
+            @click="updateHover(false)"
         >
-            <img
-                v-if="imageUrl && !fullImage"
-                class="m-auto select-none max-h-[80%] max-w-[80%]"
-                :src="imageUrl"
-            />
+            <slot />
         </div>
     </a>
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
+import { ref, watch, type PropType } from 'vue'
 
 import anime from 'animejs'
 
@@ -63,13 +60,9 @@ const props = defineProps({
         type: String,
         default: null,
     },
-    imageUrl: {
-        type: String,
-        default: '',
-    },
-    fullImage: {
-        type: Boolean,
-        default: false,
+    bgImage: {
+        type: Object as PropType<ImageMetadata>,
+        default: null,
     },
     interactive: {
         type: Boolean,
@@ -86,14 +79,13 @@ const props = defineProps({
 })
 
 let boxStyle = ref({
-    background:
-        props.fullImage && props.imageUrl
-            ? `url("${props.imageUrl}") center/cover no-repeat`
-            : 'linear-gradient(to bottom right, ' +
-              props.color +
-              ', ' +
-              lightenDarkenColor(props.color, 50) +
-              ')',
+    background: props.bgImage
+        ? `url("${props.bgImage.src}") center/cover no-repeat`
+        : 'linear-gradient(to bottom right, ' +
+          props.color +
+          ', ' +
+          lightenDarkenColor(props.color, 50) +
+          ')',
     cursor: props.interactive ? 'pointer' : 'unset',
     border: props.borderColor ? `1px solid ${props.borderColor}` : '',
 })
@@ -102,9 +94,7 @@ const tile = ref<HTMLElement>()
 const hover = ref(false)
 
 const updateHover = (value: boolean) => {
-    // if (!window.isTouchEnabled) {
     hover.value = value
-    // }
 }
 
 const box = ref<HTMLElement>()

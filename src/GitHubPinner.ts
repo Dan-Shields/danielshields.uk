@@ -18,7 +18,7 @@ function init() {
     const origin = document.getElementsByClassName('github-pinner')
     if (origin[0] == null)
         throw new Error(
-            "GitHub Planner: Could not find GitHub Pinner HTML element. Do you have the right 'id' set on the element?"
+            "GitHub Planner: Could not find GitHub Pinner HTML element. Do you have the right 'id' set on the element?",
         )
 
     for (let i = 0; i < origin.length; i++) {
@@ -27,7 +27,7 @@ function init() {
 }
 
 function loadElements(parent: HTMLElement, filter = '') {
-    const values = parseUrl(parent.getAttribute('data') as string)
+    const values = parseUrl(parent.getAttribute('data-url') as string)
     getDataForUrl(
         values['URL'],
         values['TYPE'],
@@ -121,7 +121,7 @@ function loadElements(parent: HTMLElement, filter = '') {
                 }
                 if (filter != '') {
                     const child = element.querySelector(
-                        '#gp-container-all-repos'
+                        '#gp-container-all-repos',
                     )
                     if (!child) return
                     let temp = ''
@@ -153,7 +153,7 @@ function loadElements(parent: HTMLElement, filter = '') {
                 }
             }
             element.style.visibility = 'visible'
-        }
+        },
     )
 }
 
@@ -201,7 +201,7 @@ function getDataForUrl(
     url: string,
     type: number,
     element: HTMLElement,
-    completion: (obj: any, type: number, element: HTMLElement) => void
+    completion: (obj: any, type: number, element: HTMLElement) => void,
 ) {
     const request = new XMLHttpRequest()
     request.onreadystatechange = function () {
@@ -239,7 +239,7 @@ function parseUrl(url: string) {
         const repositoryName = url
             .replace(
                 /^(http|https):\/\/(www.)?github.com\/[A-Za-z\d-]{1,39}\//g,
-                ''
+                '',
             )
             .replace(/\/$/, '')
         return {
@@ -261,8 +261,8 @@ function parseUrl(url: string) {
         }
     } else {
         throw new Error(
-            'GitHub Planner: Invalid data parameter! Unrecognized GitHub URl: ' +
-                url
+            'GitHub Planner: Invalid data-url parameter! Unrecognized GitHub URl: ' +
+                url,
         )
     }
 }

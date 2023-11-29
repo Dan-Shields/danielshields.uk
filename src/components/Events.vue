@@ -5,6 +5,7 @@
         >
             Event History
         </h1>
+        <h4><i>Last updated: November 2023</i></h4>
         <div class="table-container">
             <div class="event-table flex flex-wrap p-0 mb-[2em] text-sm">
                 <div
@@ -32,6 +33,18 @@
                 >
                     <h6>Location</h6>
                 </div>
+
+                <div>Local Elections 2023</div>
+                <div>Graphics Support</div>
+                <div>April → May 2023</div>
+                <div>BBC News</div>
+                <div>London, UK</div>
+
+                <div>DAZN Boxing</div>
+                <div>XPression Guarantee</div>
+                <div>March 2023</div>
+                <div>Loop Productions</div>
+                <div>London, UK</div>
 
                 <div>Challengers NE: Polaris</div>
                 <div>Graphics Operator</div>
@@ -273,9 +286,17 @@
         linear-gradient(to right, rgba(0, 0, 0, 0.33), rgba(255, 255, 255, 0)),
         linear-gradient(to left, rgba(0, 0, 0, 0.33), rgba(243, 243, 243, 0));
 
-    background-position: left center, right center, left center, right center;
+    background-position:
+        left center,
+        right center,
+        left center,
+        right center;
     background-repeat: no-repeat;
-    background-size: 30px 100%, 30px 100%, 20px 100%, 20px 100%;
+    background-size:
+        30px 100%,
+        30px 100%,
+        20px 100%,
+        20px 100%;
 
     /* Opera doesn't support this in the shorthand */
     background-attachment: local, local, scroll, scroll;

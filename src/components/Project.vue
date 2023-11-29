@@ -1,6 +1,6 @@
 <template>
     <div
-        class="sm:p-5 p-0 box-border bg-no-repeat bg-right sm:aspect-[5/2] text-left rounded-xl project flex flex-wrap bg-contain"
+        class="sm:p-5 p-0 box-border bg-no-repeat sm:aspect-[5/2] text-left rounded-xl project flex flex-wrap bg-contain"
         :class="{
             'bg-right': !textRight,
             'bg-left': textRight,

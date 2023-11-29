@@ -1,0 +1,710 @@
+---
+import { Image } from 'astro:assets'
+
+import MainLayout from '../layouts/MainLayout.astro'
+
+import Tile from '../components/Tile.vue'
+import Project from '../components/Project.vue'
+import Events from '../components/Events.vue'
+
+import projectImages from '../assets/projects'
+import contactImages from '../assets/contact'
+import techImages from '../assets/tech-logos'
+import clientImages from '../assets/clients'
+
+import '../assets/GitHubPinner.css'
+
+const contactMethods = [
+    {
+        name: '',
+        title: 'Email',
+        image: contactImages.at,
+        colour: '#D289F8',
+        link: 'mailto:hello@danielshields.uk',
+    },
+    {
+        name: '',
+        title: 'GitHub',
+        image: contactImages.github,
+        colour: '#24292e',
+        link: 'https://github.com/Dan-Shields',
+    },
+    {
+        name: '',
+        title: 'Twitter',
+        image: contactImages.twitter,
+        colour: '#1DA1F2',
+        link: 'https://twitter.com/DanShieldsUK',
+    },
+    {
+        name: '',
+        title: 'LinkedIn',
+        image: contactImages.linkedin,
+        colour: '#2867B2',
+        link: 'https://www.linkedin.com/in/dan98/',
+    },
+]
+
+import me from '../assets/me-new.png'
+import photos from '../assets/photos/photos.png'
+import Background from '../components/Background.vue'
+---
+
+<MainLayout>
+    <script>
+        import '../GitHubPinner.ts'
+        import anime from 'animejs'
+
+        anime({
+            targets: '.animate-in',
+            opacity: {
+                value: [0, 1],
+                duration: 1250,
+                easing: 'easeOutQuart',
+            },
+            scale: {
+                value: [0, 1],
+                duration: 1500,
+                easing: 'easeOutElastic(1, 1)',
+            },
+            delay: anime.stagger(100, { start: 0 }),
+        })
+
+        anime({
+            targets: '.fade-in',
+            opacity: {
+                value: [0, 1],
+                duration: 1000,
+                easing: 'easeOutQuart',
+            },
+        })
+    </script>
+    <div class="max-w-full m-auto align-middle w-full min-w-[240px]">
+        <h1 class="text-5xl mt-9 mb-8">Daniel Shields</h1>
+    </div>
+
+    <div class="page p-2.5 pt-0">
+        <div
+            class="px-5 sm:pt-2 pb-6 bg-gradient-to-br rounded-xl flex flex-wrap gap-4 justify-between items-center"
+        >
+            <div
+                class="basis-[164px] grow overflow-hidden aspect-square sm:rounded-full rounded-xl"
+            >
+                <Image
+                    class="sm:translate-y-[-15%] sm:translate-x-[10%] -translate-y-[20%] sm:scale-125"
+                    src={me}
+                    alt="Picture of me!"
+                />
+            </div>
+            <div class="text-xl text-left space-y-4 basis-[400px] grow">
+                <p>
+                    Hi, I'm Dan! I'm a broadcast software developer, sailor and
+                    private pilot.
+                </p>
+                <p>
+                    I offer a range of services to anyone looking to take their
+                    broadcast graphics to the next level, whether it be for
+                    esports or otherwise.
+                </p>
+                <p>
+                    Check out my experience below and get in touch if you'd like
+                    to discuss how I can help with your next project.
+                </p>
+            </div>
+        </div>
+        <div class="flex flex-wrap justify-center">
+            {
+                contactMethods.map((tile, tileIndex) => (
+                    <Tile
+                        client:load
+                        key={tileIndex}
+                        color={tile.colour}
+                        link={tile.link}
+                        class="animate-in basis-1/4 min-w-[120px] aspect-square opacity-0"
+                    >
+                        <img
+                            class="m-auto select-none max-h-[80%] max-w-[80%]"
+                            src={tile.image.src}
+                        />
+                    </Tile>
+                ))
+            }
+        </div>
+        <h1 class="pt-4 text-3xl border-t border-slate-500 mt-4 mx-3"></h1>
+        <div class="m-1 sm:m-2.5 space-y-4">
+            <div
+                class="bg-gradient-to-br text-black rounded-xl text-sm border-orthopurple border-solid border"
+            >
+                <div class="sm:p-5 p-2.5 relative">
+                    <Background client:load />
+                    <div>
+                        <a href="https://orthographics.uk" target="_blank">
+                            <img
+                                class="sm:w-3/4 w-4/5 m-auto -mt-4 py-8"
+                                src={clientImages.orthographics.src}
+                                alt="Orthographics Logo"
+                            />
+                        </a>
+                    </div>
+                    <div class="">
+                        <h1
+                            class="font-display text-center leading-tight font-regular"
+                        >
+                            <span class="sm:text-[30pt] text-[24pt]">
+                                Complete
+                                <span class="text-orthopurple"
+                                    >real-time graphics
+                                </span>
+                                 solutions</span
+                            >
+                            <span class="sm:text-[24pt] text-[20pt]">
+                                <br />for live and offline productions
+                            </span>
+                        </h1>
+
+                        <h1
+                            class="text-center text-xl font-display mt-4 mx-4 font-regular"
+                        >
+                            Streamer Overlays
+                            <span class="text-orthopurple">•</span>
+                             Esports Tournaments
+                            <span class="text-orthopurple">•</span>
+                             Game Shows
+                            <span class="text-orthopurple">•</span>
+                             Live TV
+                        </h1>
+                    </div>
+                </div>
+                <div
+                    class="p-5 bg-white w-full rounded-b-xl border-t-orthopurple border-solid border-2 border-opacity-50"
+                >
+                    <h3 class="text-lg">
+                        I'm currently offering my services through
+                        Orthographics, a company I founded in January 2023
+                        alongside my good friend
+                        <a
+                            class="underline text-orthopurple hover:text-orthopurple hover:opacity-80"
+                            href="https://tmewett.com"
+                            target="_blank">Tom Mewett</a
+                        >.
+                    </h3>
+                    <h2 class="text-2xl mt-2">
+                        Please visit <a
+                            class="underline text-orthopurple hover:text-orthopurple hover:opacity-80"
+                            target="_blank"
+                            href="https://orthographics.uk">our website</a
+                        > to learn more.
+                    </h2>
+                </div>
+            </div>
+            <div
+                class="sm:p-5 p-2.5 bg-gradient-to-br from-neutral-800 to-neutral-600 text-white rounded-xl space-y-4 text-sm"
+            >
+                <div class="pb-5">
+                    <img
+                        class="sm:w-1/2 w-4/5 m-auto mt-2"
+                        src={clientImages.faceit.src}
+                        alt="FACEIT Logo"
+                    />
+                </div>
+
+                <Project
+                    color="#3f3f3f"
+                    bgImage={projectImages.cecBg.src}
+                    textRight={false}
+                    project-name="Broadcast & LED Graphics Development"
+                >
+                    <h5 class="text-xl border-b border-orange-400">
+                        Broadcast & LED Graphics Development
+                    </h5>
+                    <p>
+                        Web-based graphics for integration into live broadcasts
+                        or LED stages, pulling data from operator control
+                        panels, stats & social media APIs and directly from live
+                        games.
+                    </p>
+                    <p>Projects include:</p>
+                    <ul class="list-disc list-inside space-y-1">
+                        <li>
+                            <a
+                                href="https://youtu.be/aCZDfpzGnkg?t=1464"
+                                target="_blank"
+                                class="underline text-orange-300 hover:text-orange-500"
+                            >
+                                Fully-custom Rocket League HUD
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://twitter.com/DanShieldsUK/status/1528507135134519296"
+                                target="_blank"
+                                class="underline text-orange-300 hover:text-orange-500"
+                            >
+                                Rainbow Six: Siege game state LED asset
+                            </a>
+                        </li>
+                        <li>DOTA 2 draft phase LED asset (pictured)</li>
+                    </ul>
+                </Project>
+
+                <Project
+                    color="#3f3f3f"
+                    image={projectImages.xpression.src}
+                    bgImage={projectImages.r6MajorBg.src}
+                    textRight={true}
+                    project-name="Graphics Operator"
+                >
+                    <h5 class="text-xl border-b border-orange-400">
+                        Graphics Operator
+                    </h5>
+                    <p>
+                        XPression and CasparCG operation at major international
+                        events including:
+                    </p>
+                    <ul class="list-disc list-inside">
+                        <li>
+                            <i>Rainbow Six Majors</i> (Charlotte & Mexico)
+                        </li>
+                        <li><i>FLASHPOINT 2 & 3</i></li>
+                        <li><i>ECS Season 8 Finals</i></li>
+                    </ul>
+                </Project>
+
+                <Project
+                    color="#3f3f3f"
+                    bgImage={projectImages.r6Mexico.src}
+                    textRight={false}
+                    project-name="FACEEATS"
+                >
+                    <h5 class="text-xl border-b border-orange-400">FACEEATS</h5>
+                    <p>
+                        A fullstack web-app for facilitiating COVID-safe
+                        catering at
+
+                        <i>FLASHPOINT 2</i> and
+                        <i>Six Major: Mexico</i> for over 250 guests.
+                    </p>
+                    <p>
+                        Features include personalised orders, meal-time
+                        notifications, menu translations and integration with
+                        existing kitchen infrastructure.
+                    </p>
+                    <p>Tech stack: Vue, Node.js, MongoDB.</p>
+                </Project>
+
+                <Project color="#3f3f3f">
+                    <h5 class="text-xl">Other Projects</h5>
+                    <div class="space-y-4">
+                        <div>
+                            <h6
+                                class="text-base border-b border-orange-400 mb-1"
+                            >
+                                Remote Broadcast Graphics Pipeline
+                            </h6>
+                            <div class="space-y-2">
+                                <p>
+                                    Proof-of-concept project to explore the
+                                    possibilities for streamlining FACEIT's
+                                    process of getting broadcast graphics to
+                                    air.
+                                </p>
+                                <p>
+                                    Assets started in After Effects before being
+                                    exported to a web-interface and played out
+                                    in-browser. A .NET app handled layering and
+                                    playout to Blackmagic Decklinks. Operators
+                                    accessed the system via a browser-based
+                                    XPression-like control panel.
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <h6
+                                class="text-base border-b border-orange-400 mb-1"
+                            >
+                                Unreal Engine Augmented Reality Studio
+                            </h6>
+                            <div class="space-y-2">
+                                <p>
+                                    At FLASHPOINT 2, a 5-week-long production,
+                                    we experimented with adding 3D assets to the
+                                    broadcast using Unreal Engine and FreeD
+                                    camera tracking.
+                                </p>
+                                <div class="relative pb-[56.25%] pt-[25px] h-0">
+                                    <iframe
+                                        width="560"
+                                        height="315"
+                                        src="https://www.youtube.com/embed/0t8uqN2CgRo?clip=UgkxkeumM1qDPrkRJOWvjS0H2Ns_zme4JHcf&clipt=EN7nxgEYy9_HAQ"
+                                        title="FLASHPOINT 3 Augmented Reality Clip"
+                                        frameborder="0"
+                                        allow="encrypted-media"
+                                        loading="lazy"
+                                        class="absolute top-0 left-0 w-full h-full"
+                                    ></iframe>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h6
+                                class="text-base border-b border-orange-400 mb-1"
+                            >
+                                Unreal Engine Virtual Studio
+                            </h6>
+                            <div class="space-y-2">
+                                <p>
+                                    For the R6 Siege EUL Finals in early 2021,
+                                    FACEIT wanted a new virtual studio to house
+                                    their remote talent. Simple pre-programmed
+                                    cues controlled by a Stream Deck added
+                                    production value for little effort.
+                                </p>
+                                <div class="relative pb-[56.25%] pt-[25px] h-0">
+                                    <iframe
+                                        src="https://clips.twitch.tv/embed?clip=SmokySincereOrcaGivePLZ&parent=danielshields.uk&muted=true"
+                                        frameborder="0"
+                                        allowfullscreen="true"
+                                        scrolling="no"
+                                        height="378"
+                                        width="620"
+                                        loading="lazy"
+                                        title="R6 Siege EUL Virtual Studio Clip"
+                                        class="absolute top-0 left-0 w-full h-full"
+                                    ></iframe>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h6
+                                class="text-base border-b border-orange-400 mb-1"
+                            >
+                                Automated Quake Observer
+                            </h6>
+                            <p>
+                                Script for swapping between
+                                <i>Quake Champions</i> players without the need
+                                for an operator. Computer vision was used as the
+                                game did not offer gamestate integration.
+                            </p>
+                        </div>
+                        <div>
+                            <h6
+                                class="text-base border-b border-orange-400 mb-1"
+                            >
+                                Discord Player Camera Controller
+                            </h6>
+                            <p>
+                                Computer vision-based script for controlling a
+                                Discord video call, ensuring users' presence and
+                                enabling camera focus. Used on FLASHPOINT 3.
+                            </p>
+                        </div>
+                    </div>
+                </Project>
+            </div>
+
+            <div
+                class="sm:p-5 p-2.5 bg-gradient-to-br to-[#2e00f8] from-[#2700db] text-white rounded-xl space-y-4 text-sm"
+            >
+                <div class="pb-5">
+                    <img
+                        class="sm:max-w-1/2 max-w-4/5 m-auto mt-2 max-h-[175px]"
+                        src={clientImages.mclaren.src}
+                        alt="McLaren Shadow Logo"
+                    />
+                </div>
+
+                <Project
+                    color="#1a1a1a"
+                    image={projectImages.mclaren.src}
+                    bgImage={projectImages.mclarenBg.src}
+                    textRight={false}
+                    project-name="Data-Driven Broadcast Graphics"
+                >
+                    <h5 class="text-xl border-b border-orange-500">
+                        Data-Driven Broadcast Graphics
+                    </h5>
+                    <p>
+                        <i>McLaren Shadow</i>'s "Watchalong" shows are all about
+                        audience engagement, and so for their
+                        <a
+                            href="https://youtu.be/qqPgxxWRFLk?t=5578"
+                            target="_blank"
+                            class="underline text-orange-400 hover:text-orange-200"
+                        >
+                            Indy 500 show</a
+                        >
+                         they commissioned an overlay with a section dedicated
+                        to following their 3 drivers' times and positions. This
+                        required pulling live track data and rendering that in a
+                        web-graphic.
+                    </p>
+                    <p>
+                        The package also included live-updating bingo and news
+                        ticker graphics that could be controlled from behind the
+                        scenes.
+                    </p>
+                </Project>
+            </div>
+
+            <div
+                class="sm:p-5 p-2.5 bg-gradient-to-br to-gray-200 from-gray-300 text-black rounded-xl space-y-4 text-sm"
+            >
+                <div>
+                    <img
+                        class="sm:max-w-1/2 max-w-4/5 m-auto max-h-[175px]"
+                        src={clientImages.ee.src}
+                        alt="Esports Engine Logo"
+                    />
+                </div>
+
+                <Project
+                    color="#ffffff"
+                    image={projectImages.xpression.src}
+                    bgImage={projectImages.twitchCon.src}
+                    textRight={true}
+                    project-name="XPression Operator"
+                >
+                    <h5 class="text-xl border-b border-red-700">
+                        XPression Operator
+                    </h5>
+                    <p>
+                        Working from Esports Engine's Stratford studio or OB
+                        trucks, with and without dedicated on-line GFX
+                        producers.
+                    </p>
+                    <p>Events include:</p>
+                    <ul class="list-disc list-inside">
+                        <li><i>Twitch Rivals: TwitchCon Amsterdam</i></li>
+                        <li><i>FIFA Global Series Playoffs</i></li>
+                        <li><i>FIFA Team of the Season Cup</i></li>
+                        <li>
+                            <i>Apex Legends Global Series Qualifiers</i>
+                        </li>
+                    </ul>
+                </Project>
+            </div>
+
+            <div
+                class="sm:p-5 p-2.5 bg-gradient-to-br to-purple-800 from-purple-900 text-white rounded-xl space-y-4 text-sm"
+            >
+                <div>
+                    <img
+                        class="sm:max-w-1/2 max-w-4/5 m-auto max-h-[175px] rounded-xl"
+                        src={clientImages.uom.src}
+                        alt="UoM Esports Logo"
+                    />
+                </div>
+
+                <Project
+                    color="#3d1c5a"
+                    image={projectImages.kotn.src}
+                    bgImage={projectImages.kotnBg.src}
+                    textRight={false}
+                    project-name="King of the North"
+                >
+                    <h5 class="text-xl border-b border-yellow-500">
+                        King of the North
+                    </h5>
+                    <p>
+                        King of the North was a student-run gaming festival
+                        hosted at the University of Manchester. The events
+                        featured a country-wide open qualifier followed by a
+                        weekend-long finals show. At its peak in 2019 there were
+                        400 participants.
+                    </p>
+                    <p>
+                        I was broadcast lead for the 2018 and 2019 events,
+                        creating the
+                        <a
+                            href="https://github.com/UoMEsports/KotN-Graphics-Bundle"
+                            target="_blank"
+                            class="underline text-yellow-400 hover:text-yellow-200"
+                            >broadcast graphics package</a
+                        >
+                         and the
+                        <a
+                            href="https://github.com/UoMEsports/KotN-VI-Website"
+                            target="_blank"
+                            class="underline text-yellow-400 hover:text-yellow-200"
+                        >
+                            webapp for teams to register for the qualifiers</a
+                        >
+                         and verify their student status.
+                    </p>
+                    <p>
+                        I was also the project lead for KotN VII, an event
+                        scheduled for March 2020, but unfortunately it was
+                        cancelled due to COVID.
+                    </p>
+                </Project>
+
+                <Project
+                    color="#3d1c5a"
+                    image={projectImages.hiveaid.src}
+                    bgImage={projectImages.hiveaidBg.src}
+                    textRight={true}
+                    project-name="HiveAid"
+                >
+                    <h5 class="text-xl border-b border-yellow-500">HiveAid</h5>
+                    <p>
+                        Raising money for <i>Special Effect</i>, HiveAid was
+                        billed as an all-star mixup, pulling players from across
+                        the university esports scene.
+                    </p>
+                    <p>
+                        I was broadcast lead for both events which raised over
+                        £500 each. As well as the
+                        <a
+                            href="https://github.com/UoMEsports/HiveAid-bundle"
+                            target="_blank"
+                            class="underline text-yellow-400 hover:text-yellow-200"
+                            >broadcast graphics package</a
+                        >, I created and deployed a
+                        <a
+                            href="https://github.com/UoMEsports/HiveAid-Donation-Tracker"
+                            target="_blank"
+                            class="underline text-yellow-400 hover:text-yellow-200"
+                        >
+                            fork of the <i>Games Done Quick</i> donation tracker</a
+                        >
+                         which integrated with the broadcast and allowed donors
+                        to give money via PayPal.
+                    </p>
+                </Project>
+            </div>
+
+            <div
+                class="sm:p-5 p-2.5 bg-gradient-to-br from-[#4ad8ab] to-[#30bfc2] rounded-xl space-y-4 text-sm"
+            >
+                <div>
+                    <h2 class="text-3xl text-white pt-2">Open Source</h2>
+                </div>
+
+                <Project color="#fafafa" textRight={false}>
+                    <h5 class="text-xl border-b border-[#4ad8ab]">
+                        League of Legends OCR HUD
+                    </h5>
+                    <p>
+                        A Node.js program for scraping gamestate data from a
+                        League of Legends game feed, allowing creation of custom
+                        broadcast HUDs.
+                    </p>
+                    <p>
+                        Makes use of Google's Cloud Vision API to get the data
+                        that is unavailable to small tournament organisers.
+                    </p>
+                    <div class="flex justify-center flex-wrap max-w-full py-2">
+                        <div
+                            data-url="https://github.com/dan-shields/League-OCR-HUD"
+                            class="github-pinner"
+                            style="visibility: hidden"
+                        >
+                        </div>
+                    </div>
+                </Project>
+
+                <Project color="#fafafa" textRight={true}>
+                    <h5 class="text-xl border-b border-[#4ad8ab]">
+                        NodeCG Utilities
+                    </h5>
+                    <p>
+                        A couple of utilities useful for developing NodeCG
+                        bundles.
+                    </p>
+                    <p>
+                        The first allows the use of Vite via a plugin, a modern
+                        bundler (finally no more webpack!). The second attempts
+                        to bridge the gap between a NodeCG Replicant and Vue's
+                        reactivity model in a sensible way.
+                    </p>
+                    <div class="flex justify-center flex-wrap max-w-full py-2">
+                        <div
+                            data-url="https://github.com/dan-shields/vite-plugin-nodecg"
+                            class="github-pinner"
+                            style="visibility: hidden"
+                        >
+                        </div>
+                        <div
+                            data-url="https://github.com/dan-shields/nodecg-vue-composable"
+                            class="github-pinner"
+                            style="visibility: hidden"
+                        >
+                        </div>
+                    </div>
+                </Project>
+            </div>
+            <div
+                class="sm:p-5 p-2.5 bg-gradient-to-br to-slate-300 from-slate-400 rounded-xl space-y-4 text-sm"
+            >
+                <div>
+                    <h2 class="text-3xl text-white py-2">
+                        Familiar Technologies
+                    </h2>
+                    <div class="flex flex-wrap justify-center">
+                        <div class="aspect-square m-2 w-[130px] relative">
+                            <img
+                                src={techImages.js.src}
+                                class="m-auto select-none max-h-[90%] max-w-[90%] left-1/2 top-1/2 -translate-y-[50%] -translate-x-[50%] absolute"
+                                alt="TypeScript & JavaScript Logos"
+                            />
+                        </div>
+                        <div class="aspect-square m-2 w-[130px] relative">
+                            <img
+                                src={techImages.vue.src}
+                                class="m-auto select-none max-h-[90%] max-w-[90%] left-1/2 top-1/2 -translate-y-[50%] -translate-x-[50%] absolute"
+                                alt="Vue.js Logo"
+                            />
+                        </div>
+                        <div class="aspect-square m-2 w-[130px] relative">
+                            <img
+                                src={techImages.xpression.src}
+                                class="m-auto select-none max-h-[90%] max-w-[90%] left-1/2 top-1/2 -translate-y-[50%] -translate-x-[50%] absolute"
+                                alt="XPression Logo"
+                            />
+                        </div>
+                        <div class="aspect-square m-2 w-[130px] relative">
+                            <img
+                                src={techImages.casparcg.src}
+                                class="m-auto select-none max-h-[90%] max-w-[90%] left-1/2 top-1/2 -translate-y-[50%] -translate-x-[50%] absolute"
+                                alt="CasparCG Logo"
+                            />
+                        </div>
+
+                        <div class="aspect-square m-2 w-[130px] relative">
+                            <img
+                                src={techImages.csharp.src}
+                                class="m-auto select-none max-h-[90%] max-w-[90%] left-1/2 top-1/2 -translate-y-[50%] -translate-x-[50%] absolute"
+                                alt="C# Logo"
+                            />
+                        </div>
+                        <div class="aspect-square m-2 w-[130px] relative">
+                            <img
+                                src={techImages.ue4.src}
+                                class="m-auto select-none max-h-[90%] max-w-[90%] left-1/2 top-1/2 -translate-y-[50%] -translate-x-[50%] absolute"
+                                alt="UE4 Logo"
+                            />
+                        </div>
+
+                        <div class="aspect-square m-2 w-[130px] relative">
+                            <img
+                                src={techImages.obs.src}
+                                class="m-auto select-none max-h-[90%] max-w-[90%] left-1/2 top-1/2 -translate-y-[50%] -translate-x-[50%] absolute"
+                                alt="OBS Logo"
+                            />
+                        </div>
+                        <div class="aspect-square m-2 w-[130px] relative">
+                            <img
+                                src={techImages.bmd.src}
+                                class="m-auto select-none max-h-[90%] max-w-[90%] left-1/2 top-1/2 -translate-y-[50%] -translate-x-[50%] absolute"
+                                alt="Blackmagic Design Logo"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <Events />
+    </div>
+</MainLayout>
